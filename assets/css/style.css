@@ -1,0 +1,36 @@
+body {
+    background-image: url(../images/dark-honeycomb.png);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#sportsQuery-submit {
+    height: 25px;
+    width: 75px;
+    font-size: 14px;
+    border-radius: 2px;
+    border-color: #2f5bb7;
+    background-color: #357ae8;
+    justify-content: space-around;
+    line-height: .8;
+    margin-top: 8px;
+}
+
+#sportsQuery-text {
+    font-size: 14px;
+    border-radius: 2px;
+    line-height: .8;
+    height: 35px;
+}
+
+label {
+    color: blanchedalmond;
+}
+
+#page-head{
+    font-family: 'Alfa Slab One', cursive;
+    font-size: 40px;
+}
+
+.gcse-search{
+    width: 80px;
+}
