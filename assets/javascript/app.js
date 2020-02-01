@@ -32,3 +32,19 @@ function createButtons() {
       $("#buttons").append(sportsBtn);
     }
   }
+
+  function sportsInfo(){
+
+      //Saves search term in variable for queries
+      let sportItem = $(this).attr("data-name");
+      
+      //Redirects user to info.html page
+      window.location.replace("./info.html");
+
+      //TODO: ajax requests will go here
+
+
+      
+  }
+
+  $(document).on("click", ".sports-btn", sportsInfo)
