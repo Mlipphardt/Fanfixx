@@ -4,22 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <!-- Google search verification (permanant) -->
-    <meta name="google-site-verification" content="935Btk13SRHDx6vo2r_qFMu2zi0GT5gtsGRAQ35qty4" />
-    <title>FanFixx</title>
+    <title>Fanfixx</title>
     <!-- Bootstrap link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
- <!-- Jquery link: useing 'defer' to increase processing speed -->
- <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous" defer></script>
+
 </head>
+
 <body>
-    <!-- Google search bar -->
-<script async src="https://cse.google.com/cse.js?cx=001341755685360009368:bepi9cillxr"></script>
-<div class="gcse-search"></div>
+    <!-- Site Banner, outside of container to stretch across viewport -->
+    <div class = "jumbotron text-center bg-info">
+        Fanfixx
+    </div>
 
+    <!-- Container for bootstrap rows-->
+    <div class = "container">
 
-   
+        <!-- Aligns content to the right -->
+        <div class="d-flex flex-row-reverse bd-highlight">
+            
+            <!-- Placeholder form, may be replaced by google search -->
+            <div class="p-2 bd-highlight"><form>
+                
+                <div class="form-group">
+                  <label for="userQuery">Search for a player, team...</label>
+                  <input type="text" class="form-control" id="userQuery" placeholder="Password">
+                </div>
+               
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+
+        </div>
+
+        <div class = "row">
+            
+            <!-- Row to hold user buttons -->
+            <div class = "col-md-12" id = "buttons">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Jquery link -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
 </body>
 </html>
