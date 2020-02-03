@@ -42,4 +42,5 @@ var caroFirebaseConfig = {
   };
 
   // Initialize Firebase
-  firebase.initializeApp(caroFirebaseConfig);
+firebase.initializeApp(caroFirebaseConfig);
+var db = firebase.database();
