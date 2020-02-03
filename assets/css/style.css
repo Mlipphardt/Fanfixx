@@ -3,6 +3,14 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+a{
+    color: none !important;
+}
+
+a:hover{
+    text-decoration: none!important;
+}
+
 #sportsQuery-submit {
     height: 25px;
     width: 75px;
@@ -31,6 +39,25 @@ label {
     font-size: 40px;
 }
 
-.gcse-search{
-    width: 80px;
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #808080;
+    color: #eee5d9;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    font-size: 12px;
+    border-top: 6px solid #1fa0b1 ;  
+}
+
+.links{
+    margin-bottom: 10px;
+}
+
+.contact-link{
+    margin: 0px 30px;
+    color: #eee5d9;
 }
