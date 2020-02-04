@@ -40,6 +40,19 @@ db.ref().on('child_added', function (data) {
   console.log("Errors occured: " + errorHandle.code)
 }
 
+// to take in user query on hitting enter
+$('#sportsQuery-text').on('keydown', function (event) {
+
+  if (event.keyCode === 13) {
+    let sportsItem = $("#sportsQuery-text").val().trim()
+  sports.push(sportsItem);
+  //Resets search text
+  $("#sportsQuery-text").val("");
+  //Creates buttons
+  createButtons();
+  }
+})
+
 //Function for creating buttons for home page
 function createButtons() {
 
@@ -63,15 +76,23 @@ function createButtons() {
   }
 }
 
-function sportsInfo() {
+  function sportsInfo(){
 
-  //Saves search term in variable for queries
-  let sportItem = $(this).attr("data-name");
+      //Saves search term in variable for queries
+      let sportItem = $(this).attr("data-name");
+      
+     //TODO: ajax requests will go here
+      $.ajax({
+        "url": "https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=" + sportItem,
+        "method": "GET",
+      }).done(function (response) {
+        console.log(response);
+      });
 
-  //Redirects user to info.html page
-  window.location.replace("./info.html");
-
-  //TODO: ajax requests will go here
+       //Redirects user to info.html page
+      window.location.replace("./info.html");
+      
+  };
 
 
 
