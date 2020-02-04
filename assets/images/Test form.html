@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Test api</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <P>My Sports feeds</P>
+    <div class="form-group">
+      <label for="sport">Sport Search</label>
+      <input type="text" class="sport" id="sport">
+    </div>
+    <div class="form-group">
+        <label for="team">Team Search</label>
+        <input type="text" class="team" id="team">
+      </div>
+      <div class="form-group">
+        <label for="player">Player Search</label>
+        <input type="text" class="player" id="player">
+      </div>
+      
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    <script>
+    
+    var apiKey = 21dcbe45-b31f-45aa-a7b6-73d49b
+    var queryURL = https://api.mysportsfeeds.com/v2.1/pull/nhl/{season}/games.{format}
+    
+    $.ajax
+({
+  type: "GET",
+  url: queryURL,
+  dataType: 'json',
+  async: false,
+  headers: {
+    "Authorization": "Basic " + btoa({21dcbe45-b31f-45aa-a7b6-73d49b} + ":" + MYSPORTSFEEDS)
+  },
+  data: '{ "comment" }',
+  success: function (){
+    alert('Thanks for your comment!'); 
+  }
+});
+    
+    
+    </script>
+        
+        <script src="" async defer></script>
+    </body>
+</html>
