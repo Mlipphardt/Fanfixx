@@ -39,19 +39,25 @@ function createButtons() {
   }
 }
 
+
   function sportsInfo(){
 
       //Saves search term in variable for queries
       let sportItem = $(this).attr("data-name");
       
       //Redirects user to info.html page
-      window.location.replace("./info.html");
 
       //TODO: ajax requests will go here
+      $.ajax({
+        "url": "https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=" + sportItem,
+        "method": "GET",
+      }).done(function (response) {
+        console.log(response);
+      });
 
-
+      window.replace("./info.html")
       
-  }
+  };
 
   $(document).on("click", ".sports-btn", sportsInfo)
 
