@@ -38,29 +38,20 @@
 
     <!-- Site Banner, outside of container to stretch across viewport -->
     <div class="jumbotron text-center bg-info">
+        <!-- Aligns content to the right -->
+        <div class="d-flex flex-row-reverse bd-highlight query-box">
+
+            <div class="form-group">
+                <input type="text" class="form-control" id="sportsQuery-text" placeholder="Search Player or Team">
+                <button type="submit" class="btn btn-primary" id="sportsQuery-submit">Submit</button>
+            </div>
+
+        </div>
         <div id="page-head">FanFixx</div>
     </div>
 
     <!-- Container for bootstrap rows-->
     <div class="container">
-
-        <!-- Aligns content to the right -->
-        <div class="d-flex flex-row-reverse bd-highlight">
-
-            <!-- Placeholder form, may be replaced by google search -->
-            <div class="p-2 bd-highlight">
-                <form>
-
-                    <div class="form-group">
-                        <label for="userQuery">Search:</label>
-                        <input type="text" class="form-control" id="sportsQuery-text" placeholder="Player or Team">
-                        <button type="submit" class="btn btn-primary" id="sportsQuery-submit">Submit</button>
-                    </div>
-
-                </form>
-            </div>
-
-        </div>
 
         <div class="row">
 
