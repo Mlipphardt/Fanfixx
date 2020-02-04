@@ -10,11 +10,35 @@ $("#sportsQuery-submit").on("click", function () {
   event.preventDefault();
   let sportsItem = $("#sportsQuery-text").val().trim()
   sports.push(sportsItem);
+
+  // pass to firebase
+  if (sportsItem === '') {
+    //use modular but using alert for now
+    alert("Please Enter a Player or Team Name");
+  }
+  else {
+
+    db.ref().push({ userQuery: sportsItem, });
+  }
+
   //Resets search text
   $("#sportsQuery-text").val("");
+})
+
+// passing user queries to firebase to be recalled later
+var userQuery = '';
+
+// make buttons from database
+db.ref().on('child_added', function (data) {
+
+  dv = data.val()
+
   //Creates buttons
   createButtons();
-})
+
+}), function (errorHandle) {
+  console.log("Errors occured: " + errorHandle.code)
+}
 
 // to take in user query on hitting enter
 $('#sportsQuery-text').on('keydown', function (event) {
@@ -43,7 +67,7 @@ function createButtons() {
     var sportsBtn = $("<a href=" + queryLink + " class='link'>");
 
     var image = $('<img src="assets/images/sports-block.jpg" alt="sportsBlock" class="sports-img">');
-    var label = $("<div class='label'>"+ sports[i]+"</div>");
+    var label = $("<div class='label'>" + sports[i] + "</div>");
     var innerBlock = sportsBtn.append(image).append(label);
 
     var token = imgDiv.append(innerBlock);
@@ -52,15 +76,12 @@ function createButtons() {
   }
 }
 
-
   function sportsInfo(){
 
       //Saves search term in variable for queries
       let sportItem = $(this).attr("data-name");
       
-      //Redirects user to info.html page
-
-      //TODO: ajax requests will go here
+     //TODO: ajax requests will go here
       $.ajax({
         "url": "https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=" + sportItem,
         "method": "GET",
@@ -68,10 +89,14 @@ function createButtons() {
         console.log(response);
       });
 
-      window.replace("./info.html")
+       //Redirects user to info.html page
+      window.location.replace("./info.html");
       
   };
 
-  $(document).on("click", ".sports-btn", sportsInfo)
 
+
+}
+
+$(document).on("click", ".sports-btn", sportsInfo)
 
