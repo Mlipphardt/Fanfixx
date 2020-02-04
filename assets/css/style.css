@@ -34,11 +34,6 @@ label {
     color: blanchedalmond;
 }
 
-#page-head {
-    font-family: 'Alfa Slab One', cursive;
-    font-size: 40px;
-}
-
 footer {
     position: fixed;
     left: 0;
@@ -72,6 +67,7 @@ footer {
 .sports-img {
     height: 180px;
     width: 180px;
+    z-index: -1;
 }
 
 .label {
@@ -85,9 +81,41 @@ footer {
     text-align: center;
     width: 180px;
     margin-top: -30px;
-    z-index: 1;
 }
 
 .link:hover {
     Text-Decoration: none !important;
+}
+
+footer {
+    padding: 5px;
+    clear: both;
+    padding-top: 0px;
+}
+
+.form-group {
+    text-align: left;
+}
+
+.query-box {
+    float: left;
+    margin-top: -40px;
+}
+
+#page-head {
+    display: inline-block;
+    text-align: center;
+    font-family: 'Alfa Slab One', cursive;
+    font-size: 100px;
+    margin: -70px 0px 0px -235px;
+}
+
+.jumbotron{
+    border-radius: 0px;
+    height: 80px;
+}
+
+.container{
+    margin-bottom: 100px;
+    text-align: center;
 }

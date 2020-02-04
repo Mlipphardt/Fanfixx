@@ -16,6 +16,19 @@ $("#sportsQuery-submit").on("click", function () {
   createButtons();
 })
 
+// to take in user query on hitting enter
+$('#sportsQuery-text').on('keydown', function (event) {
+
+  if (event.keyCode === 13) {
+    let sportsItem = $("#sportsQuery-text").val().trim()
+  sports.push(sportsItem);
+  //Resets search text
+  $("#sportsQuery-text").val("");
+  //Creates buttons
+  createButtons();
+  }
+})
+
 //Function for creating buttons for home page
 function createButtons() {
 
