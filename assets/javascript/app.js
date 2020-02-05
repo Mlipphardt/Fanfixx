@@ -7,6 +7,14 @@ var sportsItem = $("#sportsQuery-text").val().trim();
 var queryLink = '#';
 var userQuery = '';
 
+function resetStatsPage(){
+  $("#playerTeam").text("");
+  $("#playerStats").text("");
+  $("#playerPosition").text("");
+  $("#playerBio").text("");
+  $("#NextGames").empty();
+};
+
 //Click event for search button
 $("#sportsQuery-submit").on("click", function (event) {
   event.preventDefault();
@@ -91,6 +99,7 @@ function createButtons() {
 
 $(".close, .popup").on("click", function(){
   $(".popup, .popup-content").removeClass("active");
+    resetStatsPage();
   });
 
 
