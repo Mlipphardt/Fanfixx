@@ -103,12 +103,30 @@ $(".close, .popup").on("click", function(){
         $("#playerTeam").text("Team: " + playerData.strTeam)
         $("#playerPosition").text("Position: " + playerData.strPosition);
         $("#playerBio").text("Bio: " + playerData.strDescriptionEN)
-
-      });
+          $.ajax({
+            "url": "https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=" + playerData.idTeam,
+            "method": "GET",
+          }).done(function (teamresponse) {
+            console.log(teamresponse)
+            for (let i = 0; i < teamresponse.events.length; i++) {
+              let nextGame = $("<p>");
+              let gameDetails = $("<p>");
+              let thisEvent = teamresponse.events[i];
+              console.log(thisEvent);
+              $(nextGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
+              $(gameDetails).text("Playing: " + thisEvent.strEvent);
+              $("#NextGames").append(nextGame);
+              $("#NextGames").append(gameDetails);
+            } 
+          });
 
        //Redirects user to info.html page
 
-  };
+       //https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=133602
+
+  });
+
+};
 
 
 $(document).on("click", ".sports-btn", sportsInfo)
