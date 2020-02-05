@@ -76,27 +76,40 @@ function createButtons() {
   }
 }
 
+// $(".open").on("click", function(){
+//   $(".popup, .popup-content").addClass("active");
+//   });
+
+$(".close, .popup").on("click", function(){
+  $(".popup, .popup-content").removeClass("active");
+  });
+
+
   function sportsInfo(){
 
       //Saves search term in variable for queries
       let sportItem = $(this).attr("data-name");
+
+      $(".popup, .popup-content").addClass("active");
       
+
      //TODO: ajax requests will go here
       $.ajax({
         "url": "https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=" + sportItem,
         "method": "GET",
       }).done(function (response) {
-        console.log(response);
+        let playerData = response.player[0];
+        console.log(playerData);
+        $("#playerTeam").text("Team: " + playerData.strTeam)
+        $("#playerPosition").text("Position: " + playerData.strPosition);
+        $("#playerBio").text("Bio: " + playerData.strDescriptionEN)
+
       });
 
        //Redirects user to info.html page
-      window.location.replace("./info.html");
-      
+
   };
 
-
-
-}
 
 $(document).on("click", ".sports-btn", sportsInfo)
 
