@@ -1,4 +1,5 @@
 // sports db api
+/*
 var sportsDBSettings = {
 	"async": true,
 	"crossDomain": true,
@@ -12,9 +13,10 @@ var sportsDBSettings = {
 
 $.ajax(sportsDBSettings).done(function (response) {
 	console.log(response);
-});
+});*/
 
 // instagram api
+/*
 var instaSettings = {
 	"async": true,
 	"crossDomain": true,
@@ -28,7 +30,7 @@ var instaSettings = {
 
 $.ajax(instaSettings).done(function (response) {
 	console.log(response);
-});
+});*/
 
 // Carolyn Firebase
 var caroFirebaseConfig = {

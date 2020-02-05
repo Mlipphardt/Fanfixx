@@ -2,22 +2,23 @@
 //Will hold search items to create buttons
 //TODO: fill on page load with localStorage JSON saved items.
 
-sports = [];
+var sports = [];
+var sportsItem = $("#sportsQuery-text").val().trim();
 var queryLink = '#';
+var userQuery = '';
 
 //Click event for search button
-$("#sportsQuery-submit").on("click", function () {
+$("#sportsQuery-submit").on("click", function (event) {
   event.preventDefault();
-  let sportsItem = $("#sportsQuery-text").val().trim()
+
   sports.push(sportsItem);
 
-  // pass to firebase
   if (sportsItem === '') {
     //use modular but using alert for now
     alert("Please Enter a Player or Team Name");
   }
   else {
-
+    // pass to firebase
     db.ref().push({ userQuery: sportsItem, });
   }
 
@@ -25,9 +26,28 @@ $("#sportsQuery-submit").on("click", function () {
   $("#sportsQuery-text").val("");
 })
 
-// passing user queries to firebase to be recalled later
-var userQuery = '';
+// to take in user query on hitting enter
+$('#sportsQuery-text').on('keydown', function (event) {
 
+  if (event.keyCode === 13) {
+
+    if (sportsItem === '') {
+      //use modular but using alert for now
+      alert("Please Enter a Player or Team Name");
+    }
+    else {
+      // pass to firebase
+      db.ref().push({ userQuery: sportsItem, });
+
+      sports.push(sportsItem);
+    }
+
+    //Resets search text
+    $("#sportsQuery-text").val("");
+  }
+})
+
+// passing user queries to firebase to be recalled later
 // make buttons from database
 db.ref().on('child_added', function (data) {
 
@@ -39,19 +59,6 @@ db.ref().on('child_added', function (data) {
 }), function (errorHandle) {
   console.log("Errors occured: " + errorHandle.code)
 }
-
-// to take in user query on hitting enter
-$('#sportsQuery-text').on('keydown', function (event) {
-
-  if (event.keyCode === 13) {
-    let sportsItem = $("#sportsQuery-text").val().trim()
-  sports.push(sportsItem);
-  //Resets search text
-  $("#sportsQuery-text").val("");
-  //Creates buttons
-  createButtons();
-  }
-})
 
 //Function for creating buttons for home page
 function createButtons() {
@@ -76,27 +83,23 @@ function createButtons() {
   }
 }
 
-  function sportsInfo(){
+function sportsInfo() {
 
-      //Saves search term in variable for queries
-      let sportItem = $(this).attr("data-name");
-      
-     //TODO: ajax requests will go here
-      $.ajax({
-        "url": "https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=" + sportItem,
-        "method": "GET",
-      }).done(function (response) {
-        console.log(response);
-      });
+  //Saves search term in variable for queries
+  let sportItem = $(this).attr("data-name");
 
-       //Redirects user to info.html page
-      window.location.replace("./info.html");
-      
-  };
+  //TODO: ajax requests will go here
+  $.ajax({
+    "url": "https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=" + sportItem,
+    "method": "GET",
+  }).done(function (response) {
+    console.log(response);
+  });
 
+  //Redirects user to info.html page
+  window.location.replace("./info.html");
 
-
-}
+};
 
 $(document).on("click", ".sports-btn", sportsInfo)
 
