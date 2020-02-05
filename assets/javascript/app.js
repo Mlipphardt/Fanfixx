@@ -3,13 +3,15 @@
 //TODO: fill on page load with localStorage JSON saved items.
 
 var sports = [];
-var sportsItem = $("#sportsQuery-text").val().trim();
+var sportsItem = ""
 var queryLink = '#';
 var userQuery = '';
 
 //Click event for search button
 $("#sportsQuery-submit").on("click", function (event) {
   event.preventDefault();
+
+  sportsItem = $("#sportsQuery-text").val().trim();
 
   sports.push(sportsItem);
 
@@ -36,6 +38,7 @@ $('#sportsQuery-text').on('keydown', function (event) {
       alert("Please Enter a Player or Team Name");
     }
     else {
+      sportsItem = $("#sportsQuery-text").val().trim();
       // pass to firebase
       db.ref().push({ userQuery: sportsItem, });
 
