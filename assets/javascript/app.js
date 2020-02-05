@@ -5,6 +5,8 @@ var sportsItem = ""
 var queryLink = '#';
 var userQuery = '';
 
+$(".popup, .popup-content").hide();
+
 function resetStatsPage() {
   $("#playerTeam").text("");
   $("#playerStats").text("");
@@ -101,13 +103,8 @@ db.ref().on('value', function (data) {
   console.log("Errors occured: " + errorHandle.code)
 })
 
-// $(".open").on("click", function(){
-//   $(".popup, .popup-content").addClass("active");
-//   });
-
 $(".close, .popup").on("click", function () {
-  $(".popup, .popup-content").removeClass("active");
-  resetStatsPage();
+  $(".popup, .popup-content").fadeOut("slow");
 });
 
 
@@ -115,8 +112,9 @@ function sportsInfo() {
 
   //Saves search term in variable for queries
   let sportItem = $(this).attr("data-name");
+  resetStatsPage();
 
-  $(".popup, .popup-content").addClass("active");
+  $(".popup, .popup-content").fadeIn("slow");
 
 
   //TODO: ajax requests will go here
@@ -145,10 +143,6 @@ function sportsInfo() {
         $("#NextGames").append(gameDetails);
       }
     });
-
-    //Redirects user to info.html page
-
-    //https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=133602
 
   });
 
