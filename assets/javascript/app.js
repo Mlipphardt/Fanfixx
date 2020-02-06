@@ -5,6 +5,8 @@ var sportsItem = ""
 var queryLink = '#';
 var userQuery = '';
 
+$(".popup, .popup-content").hide();
+
 function resetStatsPage() {
   $("#playerTeam").text("");
   $("#playerStats").text("");
@@ -101,13 +103,8 @@ db.ref().on('value', function (data) {
   console.log("Errors occured: " + errorHandle.code)
 })
 
-// $(".open").on("click", function(){
-//   $(".popup, .popup-content").addClass("active");
-//   });
-
 $(".close, .popup").on("click", function () {
-  $(".popup, .popup-content").removeClass("active");
-  resetStatsPage();
+  $(".popup, .popup-content").fadeOut("slow");
 });
 
 
@@ -115,8 +112,9 @@ function sportsInfo() {
 
   //Saves search term in variable for queries
   let sportItem = $(this).attr("data-name");
+  resetStatsPage();
 
-  $(".popup, .popup-content").addClass("active");
+  $(".popup, .popup-content").fadeIn("slow");
 
 
   //TODO: ajax requests will go here
@@ -138,18 +136,33 @@ function sportsInfo() {
         let nextGame = $("<p>");
         let gameDetails = $("<p>");
         let thisEvent = teamresponse.events[i];
-        console.log(thisEvent);
         $(nextGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
         $(gameDetails).text("Playing: " + thisEvent.strEvent);
         $("#NextGames").append(nextGame);
         $("#NextGames").append(gameDetails);
       }
     });
-
-    //Redirects user to info.html page
-
-    //https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=133602
-
+    $.ajax({
+      "url": "https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=" + playerData.idTeam,
+      "method": "GET",
+    }).done(function (pasteventresponse) {
+      console.log(pasteventresponse)
+      for (let i = 0; i < pasteventresponse.results.length; i++) {
+           let lastGame = $("<p>");
+           let gameDetails = $("<p>");
+           let gameScore = $("<p>");
+           let thisEvent = pasteventresponse.results[i];
+           console.log(thisEvent);
+           $(lastGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
+           $(gameDetails).text("Playing: " + thisEvent.strEvent);
+           $(gameScore).text("Final Score: " + thisEvent.intHomeScore + " to " + thisEvent.intAwayScore);
+           $("#LastGames").append(lastGame);
+           $("#LastGames").append(gameDetails);
+           $("#LastGames").append(gameScore);
+       }
+      
+    });
+    
   });
 
 };

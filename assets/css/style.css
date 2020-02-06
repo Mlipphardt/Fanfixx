@@ -18,21 +18,11 @@ a:hover {
 }
 
 .popup-overlay {
-    visibility: hidden;
-}
-
-.popup-content {
-    visibility: hidden;
-}
-
-.popup-overlay.active {
-    visibility: visible;
     background-color: purple;
     color: white;
 }
 
-.popup-content.active {
-    visibility: visible;
+.popup-content {
     background-color: purple;
     color: white;
 }
