@@ -136,14 +136,33 @@ function sportsInfo() {
         let nextGame = $("<p>");
         let gameDetails = $("<p>");
         let thisEvent = teamresponse.events[i];
-        console.log(thisEvent);
         $(nextGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
         $(gameDetails).text("Playing: " + thisEvent.strEvent);
         $("#NextGames").append(nextGame);
         $("#NextGames").append(gameDetails);
       }
     });
-
+    $.ajax({
+      "url": "https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=" + playerData.idTeam,
+      "method": "GET",
+    }).done(function (pasteventresponse) {
+      console.log(pasteventresponse)
+      for (let i = 0; i < pasteventresponse.results.length; i++) {
+           let lastGame = $("<p>");
+           let gameDetails = $("<p>");
+           let gameScore = $("<p>");
+           let thisEvent = pasteventresponse.results[i];
+           console.log(thisEvent);
+           $(lastGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
+           $(gameDetails).text("Playing: " + thisEvent.strEvent);
+           $(gameScore).text("Final Score: " + thisEvent.intHomeScore + " to " + thisEvent.intAwayScore);
+           $("#LastGames").append(lastGame);
+           $("#LastGames").append(gameDetails);
+           $("#LastGames").append(gameScore);
+       }
+      
+    });
+    
   });
 
 };
