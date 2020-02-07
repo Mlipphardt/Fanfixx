@@ -35,7 +35,10 @@ function resetStatsPage() {
 $("#sportsQuery-submit").on("click", function (event) {
   event.preventDefault();
 
-  sportsItem = $("#sportsQuery-text").val().trim();
+  let item = $("#sportsQuery-text").val().trim();
+
+  // push lower case name to firebase
+  sportsItem = item.toLowerCase();
 
   if (sportsItem === '') {
     //use modular but using alert for now
@@ -54,7 +57,7 @@ $("#sportsQuery-submit").on("click", function (event) {
 $('#sportsQuery-text').on('keydown', function (event) {
 
   if (event.keyCode === 13) {
-    
+
     let item = $("#sportsQuery-text").val().trim();
 
     // push lower case name to firebase
@@ -75,22 +78,22 @@ $('#sportsQuery-text').on('keydown', function (event) {
   }
 })
 
-// passing user queries to firebase to be recalled later
 // make buttons from database
 db.ref().on('child_added', function (data) {
 
   var dv = data.val()
   let query = dv.userQuery
   // pass uppercase name to avatar label
- let labelName =  query.replace(/\b[a-z]/g, function(letter) {
-    return letter.toUpperCase();});
-  // pase to firebase
+  let labelName = query.replace(/\b[a-z]/g, function (letter) {
+    return letter.toUpperCase();
+  });
+  // pass as lowercase 
   let userQuery = query.toLowerCase()
-  console.log('dv.userQuery: ' +userQuery+ ', ' +labelName)
+  console.log('dv.userQuery: ' + userQuery + ', ' + labelName)
 
   //Creates buttons
   var imgDiv = $('<div class="sports-btn">');
-  imgDiv.attr("data-name", userQuery);
+  imgDiv.attr("data-name", query);
 
   var sportsBtn = $("<a href=" + queryLink + " class='link'>");
 
@@ -140,8 +143,8 @@ function sportsInfo() {
   //Saves search term in variable for queries
   let sportItem = $(this).attr("data-name");
   console.log(sportItem)
- 
-  
+
+
   resetStatsPage();
 
   $(".popup, .popup-content").fadeIn("slow");
@@ -153,7 +156,7 @@ function sportsInfo() {
   }).done(function (response) {
     let playerData = response.player[0];
     console.log(playerData);
-    
+
     $("#playerTeam").text("Team: " + playerData.strTeam)
     $("#playerPosition").text("Position: " + playerData.strPosition);
     $("#playerBio").text("Bio: " + playerData.strDescriptionEN)
@@ -182,7 +185,7 @@ function sportsInfo() {
         let gameDetails = $("<p>");
         let gameScore = $("<p>");
         let thisEvent = pasteventresponse.results[i];
-        console.log('thisEvent: ' +thisEvent);
+        console.log('thisEvent: ' + thisEvent);
         $(lastGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
         $(gameDetails).text("Playing: " + thisEvent.strEvent);
         $(gameScore).text("Final Score: " + thisEvent.intHomeScore + " to " + thisEvent.intAwayScore);
@@ -216,12 +219,12 @@ $('#instaQuery-submit').on('click', function (event) {
   // add child...instaHandle
   // recall instahandle to api url for future visits to the site
 
-  
+
   let instaHandle = $('#insta-box').val().trim()
   //let instaData = 
   //console.log('instaData: ' +instaData)
 
-  if (instaHandle === '') {} 
+  if (instaHandle === '') { }
   else {
     // clear text box
     $('#insta-box').val('');
@@ -247,8 +250,8 @@ $('#instaQuery-submit').on('click', function (event) {
       console.log(instaName);
 
       for (let i = 0; i < response.posts.length; i++) {
-        let post = $("<img alt='post "+[i]+"' src="+response.posts[i].attachments.link+" class='photo'></img>");
-        let caption = $('<p class="photoLabel">"'+response.posts[i].text+'"</p>');
+        let post = $("<img alt='post " + [i] + "' src=" + response.posts[i].attachments.link + " class='photo'></img>");
+        let caption = $('<p class="photoLabel">"' + response.posts[i].text + '"</p>');
 
         $('#posts').append(post).append(caption);
       }
