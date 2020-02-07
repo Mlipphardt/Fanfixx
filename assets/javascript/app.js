@@ -188,7 +188,7 @@ function sportsInfo() {
 
 
 // get instagram acct name from submission box
-$('#instaQuery-submit').on('click', function (event) {
+/*$('#instaQuery-submit').on('click', function (event) {
   event.preventDefault;
   //$('.form-group').hide().addclass('hide');
 
@@ -232,7 +232,7 @@ $('#instaQuery-submit').on('click', function (event) {
       }
     })
   }
-})
+})*/
 
 $(document).on("click", ".sports-btn", sportsInfo)
 
