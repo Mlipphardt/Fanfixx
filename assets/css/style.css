@@ -174,10 +174,6 @@ footer {
     margin-top: 8px;
 }
 
-.instaQuery-box {
-    margin: 0 auto;
-}
-
 .photo {
     width: 300px;
     height: 300px;
@@ -195,3 +191,8 @@ footer {
 .hide{
     height: 0px;
 }
+
+#insta-form{
+    margin: 20px auto 0px;
+}
+

@@ -55,6 +55,8 @@ $('#sportsQuery-text').on('keydown', function (event) {
 
   if (event.keyCode === 13) {
 
+    sportsItem = $("#sportsQuery-text").val().trim();
+
     if (sportsItem === '') {
       //use modular but using alert for now
       alert("Please Enter a Player or Team Name");
@@ -190,7 +192,7 @@ function sportsInfo() {
 // get instagram acct name from submission box
 /*$('#instaQuery-submit').on('click', function (event) {
   event.preventDefault;
-  //$('.form-group').hide().addclass('hide');
+  $('.form-group').hide();
 
   // push insta handle to firebase pseudo code
   // get name player/team from 'this.sportsItem'
@@ -231,6 +233,47 @@ function sportsInfo() {
         $('#posts').append(post).append(caption);
       }
     })
+  }
+})
+
+// instagram submit search by hitting enter
+$('#insta-box').on('keydown', function (event) {
+
+  let instaHandle = $('#insta-box').val().trim()
+
+  if (event.keyCode === 13) {
+
+    if (instaHandle === '') {
+      alert("Please Enter a Player or Team Instagram ID");
+    }
+    else {
+      // clear text box
+      $('#insta-box').val('');
+      $('.form-group').hide();
+
+      //pull instagram info from api
+      var instaSettings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaHandle + "&lang=en",
+        "method": "GET",
+        "headers": {
+          "x-rapidapi-host": "instagram9.p.rapidapi.com",
+          "x-rapidapi-key": "24e7ba1147msh84b2d9ba4889f35p191fc7jsn48829d32f784"
+        }
+      }
+
+      $.ajax(instaSettings).done(function (response) {
+        console.log(response.posts);
+
+        for (let i = 0; i < response.posts.length; i++) {
+          let post = $("<img alt='post " + [i] + "' src=" + response.posts[i].attachments.link + " class='photo'></img>");
+          let caption = $('<p class="photoLabel">"' + response.posts[i].text + '"</p>')
+
+          $('#posts').append(post).append(caption);
+        }
+      })
+    }
   }
 })*/
 
