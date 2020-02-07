@@ -90,12 +90,11 @@ footer {
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
     color: #f1f1f1;
-    width: 100%;
     font-size: 14px;
     padding: 5px;
     text-align: center;
     width: 180px;
-    margin-top: -30px;
+    margin-top: -27px;
 }
 
 .link:hover {
@@ -112,7 +111,7 @@ footer {
     text-align: left;
 }
 
-.form-control{
+.form-control {
     border: 1px solid #515252;
 }
 
@@ -144,14 +143,55 @@ footer {
     text-align: center;
 }
 
-#twitter{
+#twitter {
     background-color: #2f5bb7;
 }
 
-#insta{
+#insta {
     background-color: #771c0c;
 }
 
-#stats{
+#stats {
     background-color: purple;
+}
+
+#insta-box {
+    font-size: 14px;
+    border-radius: 2px;
+    line-height: .8;
+    height: 35px;
+}
+
+#instaQuery-submit {
+    height: 25px;
+    width: 75px;
+    font-size: 14px;
+    border-radius: 2px;
+    border-color: #2f5bb7;
+    background-color: #357ae8;
+    justify-content: space-around;
+    line-height: .8;
+    margin-top: 8px;
+}
+
+.instaQuery-box {
+    margin: 0 auto;
+}
+
+.photo {
+    width: 300px;
+    height: 300px;
+}
+
+.photoLabel {
+    font-size: 14px;
+    margin: 10px 0px 20px;
+}
+
+.col {
+    padding: 15px;
+}
+
+.hide{
+    height: 0px;
 }
