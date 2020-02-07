@@ -5,6 +5,22 @@ var sportsItem = ""
 var queryLink = '#';
 var userQuery = '';
 
+// Firebase
+var caroFirebaseConfig = {
+  apiKey: "AIzaSyAAuD528OgJy5QRxX2z7kdTIgok_Gwcobs",
+  authDomain: "project-one-dff4c.firebaseapp.com",
+  databaseURL: "https://project-one-dff4c.firebaseio.com",
+  projectId: "project-one-dff4c",
+  storageBucket: "project-one-dff4c.appspot.com",
+  messagingSenderId: "1062091675299",
+  appId: "1:1062091675299:web:1651175bb75de723da5116"
+};
+
+// Initialize Firebase
+firebase.initializeApp(caroFirebaseConfig);
+var db = firebase.database();
+
+// initially hide popup content
 $(".popup, .popup-content").hide();
 
 function resetStatsPage() {
@@ -107,7 +123,7 @@ $(".close, .popup").on("click", function () {
   $(".popup, .popup-content").fadeOut("slow");
 });
 
-
+// pull sports info from api
 function sportsInfo() {
 
   //Saves search term in variable for queries
@@ -115,7 +131,6 @@ function sportsInfo() {
   resetStatsPage();
 
   $(".popup, .popup-content").fadeIn("slow");
-
 
   //TODO: ajax requests will go here
   $.ajax({
@@ -148,26 +163,76 @@ function sportsInfo() {
     }).done(function (pasteventresponse) {
       console.log(pasteventresponse)
       for (let i = 0; i < pasteventresponse.results.length; i++) {
-           let lastGame = $("<p>");
-           let gameDetails = $("<p>");
-           let gameScore = $("<p>");
-           let thisEvent = pasteventresponse.results[i];
-           console.log(thisEvent);
-           $(lastGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
-           $(gameDetails).text("Playing: " + thisEvent.strEvent);
-           $(gameScore).text("Final Score: " + thisEvent.intHomeScore + " to " + thisEvent.intAwayScore);
-           $("#LastGames").append(lastGame);
-           $("#LastGames").append(gameDetails);
-           $("#LastGames").append(gameScore);
-       }
-      
+        let lastGame = $("<p>");
+        let gameDetails = $("<p>");
+        let gameScore = $("<p>");
+        let thisEvent = pasteventresponse.results[i];
+        console.log(thisEvent);
+        $(lastGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
+        $(gameDetails).text("Playing: " + thisEvent.strEvent);
+        $(gameScore).text("Final Score: " + thisEvent.intHomeScore + " to " + thisEvent.intAwayScore);
+        $("#LastGames").append(lastGame);
+        $("#LastGames").append(gameDetails);
+        $("#LastGames").append(gameScore);
+      }
     });
-    
   });
-
 };
 
 
+
+// should we set a height limit and make individual columns scrolable so
+// content can be seen side by side instead of scrolling past one columns
+// content in order to see all of another columns content????????
+
+
+
+// get instagram acct name from submission box
+$('#instaQuery-submit').on('click', function (event) {
+  event.preventDefault;
+  //$('.form-group').hide().addclass('hide');
+
+  // push insta handle to firebase pseudo code
+  // get name player/team from 'this.sportsItem'
+  // go into firebase
+  // for loop to check each database child element
+  // if this.sports item === element.userQuery
+  // add child...instaHandle
+  // recall instahandle to api url for future visits to the site
+
+
+
+  let instaHandle = $('#insta-box').val().trim()
+
+  if (instaHandle === '') {} 
+  else {
+    // clear text box
+    $('#insta-box').val('');
+
+    //pull instagram info from api
+    var instaSettings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaHandle + "&lang=en",
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "instagram9.p.rapidapi.com",
+        "x-rapidapi-key": "24e7ba1147msh84b2d9ba4889f35p191fc7jsn48829d32f784"
+      }
+    }
+
+    $.ajax(instaSettings).done(function (response) {
+      console.log(response.posts);
+
+      for (let i = 0; i < response.posts.length; i++) {
+        let post = $("<img alt='post "+[i]+"' src="+response.posts[i].attachments.link+" class='photo'></img>");
+        let caption = $('<p class="photoLabel">"'+response.posts[i].text+'"</p>')
+
+        $('#posts').append(post).append(caption);
+      }
+    })
+  }
+})
 
 $(document).on("click", ".sports-btn", sportsInfo)
 
