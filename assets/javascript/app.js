@@ -54,8 +54,11 @@ $("#sportsQuery-submit").on("click", function (event) {
 $('#sportsQuery-text').on('keydown', function (event) {
 
   if (event.keyCode === 13) {
+    
+    let item = $("#sportsQuery-text").val().trim();
 
-    sportsItem = $("#sportsQuery-text").val().trim();
+    // push lower case name to firebase
+    sportsItem = item.toLowerCase();
 
     if (sportsItem === '') {
       //use modular but using alert for now
@@ -77,16 +80,22 @@ $('#sportsQuery-text').on('keydown', function (event) {
 db.ref().on('child_added', function (data) {
 
   var dv = data.val()
-  console.log(dv.userQuery)
+  let query = dv.userQuery
+  // pass uppercase name to avatar label
+ let labelName =  query.replace(/\b[a-z]/g, function(letter) {
+    return letter.toUpperCase();});
+  // pase to firebase
+  let userQuery = query.toLowerCase()
+  console.log('dv.userQuery: ' +userQuery+ ', ' +labelName)
 
   //Creates buttons
   var imgDiv = $('<div class="sports-btn">');
-  imgDiv.attr("data-name", dv.userQuery);
+  imgDiv.attr("data-name", userQuery);
 
   var sportsBtn = $("<a href=" + queryLink + " class='link'>");
 
   var image = $('<img src="assets/images/sports-block.jpg" alt="sportsBlock" class="sports-img">');
-  var label = $("<div class='label'>" + dv.userQuery + "</div>");
+  var label = $("<div class='label'>" + labelName + "</div>");
   var innerBlock = sportsBtn.append(image).append(label);
 
   var token = imgDiv.append(innerBlock);
@@ -130,6 +139,9 @@ function sportsInfo() {
 
   //Saves search term in variable for queries
   let sportItem = $(this).attr("data-name");
+  console.log(sportItem)
+ 
+  
   resetStatsPage();
 
   $(".popup, .popup-content").fadeIn("slow");
@@ -141,6 +153,7 @@ function sportsInfo() {
   }).done(function (response) {
     let playerData = response.player[0];
     console.log(playerData);
+    
     $("#playerTeam").text("Team: " + playerData.strTeam)
     $("#playerPosition").text("Position: " + playerData.strPosition);
     $("#playerBio").text("Bio: " + playerData.strDescriptionEN)
@@ -169,7 +182,7 @@ function sportsInfo() {
         let gameDetails = $("<p>");
         let gameScore = $("<p>");
         let thisEvent = pasteventresponse.results[i];
-        console.log(thisEvent);
+        console.log('thisEvent: ' +thisEvent);
         $(lastGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
         $(gameDetails).text("Playing: " + thisEvent.strEvent);
         $(gameScore).text("Final Score: " + thisEvent.intHomeScore + " to " + thisEvent.intAwayScore);
@@ -190,9 +203,10 @@ function sportsInfo() {
 
 
 // get instagram acct name from submission box
-/*$('#instaQuery-submit').on('click', function (event) {
+$('#instaQuery-submit').on('click', function (event) {
   event.preventDefault;
   $('.form-group').hide();
+
 
   // push insta handle to firebase pseudo code
   // get name player/team from 'this.sportsItem'
@@ -202,9 +216,10 @@ function sportsInfo() {
   // add child...instaHandle
   // recall instahandle to api url for future visits to the site
 
-
-
+  
   let instaHandle = $('#insta-box').val().trim()
+  //let instaData = 
+  //console.log('instaData: ' +instaData)
 
   if (instaHandle === '') {} 
   else {
@@ -224,11 +239,16 @@ function sportsInfo() {
     }
 
     $.ajax(instaSettings).done(function (response) {
+      console.log(response);
       console.log(response.posts);
+
+      let responseName = response.fullName;
+      let instaName = responseName.toLowerCase();
+      console.log(instaName);
 
       for (let i = 0; i < response.posts.length; i++) {
         let post = $("<img alt='post "+[i]+"' src="+response.posts[i].attachments.link+" class='photo'></img>");
-        let caption = $('<p class="photoLabel">"'+response.posts[i].text+'"</p>')
+        let caption = $('<p class="photoLabel">"'+response.posts[i].text+'"</p>');
 
         $('#posts').append(post).append(caption);
       }
@@ -237,7 +257,7 @@ function sportsInfo() {
 })
 
 // instagram submit search by hitting enter
-$('#insta-box').on('keydown', function (event) {
+/*$('#insta-box').on('keydown', function (event) {
 
   let instaHandle = $('#insta-box').val().trim()
 
@@ -264,7 +284,7 @@ $('#insta-box').on('keydown', function (event) {
       }
 
       $.ajax(instaSettings).done(function (response) {
-        console.log(response.posts);
+        console.log('response.posts: ' +response.posts);
 
         for (let i = 0; i < response.posts.length; i++) {
           let post = $("<img alt='post " + [i] + "' src=" + response.posts[i].attachments.link + " class='photo'></img>");
@@ -276,6 +296,8 @@ $('#insta-box').on('keydown', function (event) {
     }
   }
 })*/
+
+// push instagram handle to firebase for that player
 
 $(document).on("click", ".sports-btn", sportsInfo)
 
