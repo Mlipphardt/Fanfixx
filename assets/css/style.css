@@ -19,10 +19,10 @@ a:hover {
 
 .popup-overlay {
     color: white;
+    margin-bottom: 85px;
 }
 
 .popup-content {
-    background-color: purple;
     color: white;
 }
 
