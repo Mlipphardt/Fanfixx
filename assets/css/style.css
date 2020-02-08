@@ -1,6 +1,8 @@
 body {
     background-image: url(../images/dark-honeycomb.png);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Basic', sans-serif;
+    font-size: 16px;
+    letter-spacing: 1px;
 }
 
 .banner-image {
@@ -24,6 +26,7 @@ a:hover {
 .popup-content {
     background-color: purple;
     color: white;
+    height: 800px;
 }
 
 #sportsQuery-submit {
@@ -58,10 +61,6 @@ a:hover {
     width: 160px;
     width: 168px;
     padding-left: 8px;
-}
-
-label {
-    color: blanchedalmond;
 }
 
 footer {
@@ -112,11 +111,11 @@ footer {
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
     color: #f1f1f1;
-    font-size: 14px;
-    padding: 5px;
+    font-size: 16px;
+    padding: 3px;
     text-align: center;
     width: 180px;
-    margin-top: -31px;
+    margin-top: -30px;
 }
 
 .link:hover {
@@ -167,10 +166,14 @@ footer {
 
 #insta {
     background-color: #771c0c;
+    padding: 15px;
+    overflow: scroll;
 }
 
 #stats {
     background-color: #2f3b1e;
+    padding: 15px;
+    overflow: scroll;
 }
 
 #insta-box {
@@ -194,17 +197,16 @@ footer {
     padding: 15px;
 }
 
-.hide{
+.hide {
     height: 0px;
 }
 
-#insta-form{
+#insta-form {
     margin: 20px auto 0px;
 }
 
-.avatar-img{
+.avatar-img {
     height: 180px;
     width: 180px;
     z-index: -1;
 }
-
