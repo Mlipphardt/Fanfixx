@@ -142,7 +142,7 @@ db.ref().on('child_added', function (data) {
 
   var sportsBtn = $("<a href=" + queryLink + " class='link'>");
 
-  var image = $('<img src="' + avatar + '" alt="sportsBlock" class="sports-img">');
+  var image = $('<img src="' + avatar + '" alt="sportsBlock" class="avatar-img">');
   var label = $("<div class='label'>" + labelName + "</div>");
   var innerBlock = sportsBtn.append(image).append(label);
 
@@ -170,7 +170,7 @@ db.ref().on('value', function (data) {
 
     var sportsBtn = $("<a href=" + queryLink + " class='link'>");
 
-    var image = $('<img src="' + avatar + '" alt="sportsBlock" class="sports-img">');
+    var image = $('<img src="' + avatar + '" alt="sportsBlock" class="avatar-img">');
     var label = $("<div class='label'>" + query + "</div>");
     var innerBlock = sportsBtn.append(image).append(label);
 

@@ -90,10 +90,14 @@ footer {
     cursor: default;
 }
 
-.sports-img {
+.avatar-img {
     height: 180px;
     width: 180px;
-    z-index: -2;
+    z-index: -1;
+}
+
+.avatar-img:hover{
+    opacity: .5;
 }
 
 .label {
