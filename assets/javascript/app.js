@@ -45,7 +45,7 @@ $("#sportsQuery-submit").on("click", function (event) {
   let sportsItem = $("#sportsQuery-text").val().trim();
   let instaItem = $("#instaQuery-text").val().trim();
 
-  /* //pull instagram info from api
+  //pull instagram info from api
   var instaSettings = {
     "async": true,
     "crossDomain": true,
@@ -75,7 +75,7 @@ $("#sportsQuery-submit").on("click", function (event) {
     //Resets search text
     $("#sportsQuery-text").val("");
     $("#instaQuery-text").val("");
-  })*/
+  })
 })
 
 
@@ -87,7 +87,7 @@ $('#sportsQuery-text').on('keydown', function (event) {
     let sportsItem = $("#sportsQuery-text").val().trim();
     let instaItem = $("#instaQuery-text").val().trim();
 
-   /* //pull instagram info from api
+    //pull instagram info from api
      var instaSettings = {
        "async": true,
        "crossDomain": true,
@@ -118,7 +118,50 @@ $('#sportsQuery-text').on('keydown', function (event) {
        //Resets search text
        $("#sportsQuery-text").val("");
        $("#instaQuery-text").val("");
-     })*/
+     })
+  }
+})
+
+// to take in user query on hitting enter
+$('#instaQuery-text').on('keydown', function (event) {
+
+  if (event.keyCode === 13) {
+
+    let sportsItem = $("#sportsQuery-text").val().trim();
+    let instaItem = $("#instaQuery-text").val().trim();
+
+    //pull instagram info from api
+     var instaSettings = {
+       "async": true,
+       "crossDomain": true,
+       "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaItem + "&lang=en",
+       "method": "GET",
+       "headers": {
+         "x-rapidapi-host": "instagram9.p.rapidapi.com",
+         "x-rapidapi-key": "24e7ba1147msh84b2d9ba4889f35p191fc7jsn48829d32f784"
+       }
+     }
+
+     $.ajax(instaSettings).done(function (response) {
+       console.log(response);
+
+       let avatar = response.avatar
+
+       if (sportsItem === '' || instaItem === '') {
+       }
+       else {
+         // pass to firebase
+         db.ref().push({
+           userQuery: sportsItem,
+           instagram: instaItem,
+           avatar: avatar,
+         });
+       }
+
+       //Resets search text
+       $("#sportsQuery-text").val("");
+       $("#instaQuery-text").val("");
+     })
   }
 })
 
@@ -271,7 +314,7 @@ function instaInfo() {
 
   resetInstaPage();
 
-  /*//pull instagram info from api
+  //pull instagram info from api
    var instaSettings = {
      "async": true,
      "crossDomain": true,
@@ -302,7 +345,7 @@ function instaInfo() {
          $('#posts').append(post).append(caption);
        }
      }
-   })*/
+   })
 }
 
 function playerConfirmation() {
