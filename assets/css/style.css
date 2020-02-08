@@ -165,6 +165,7 @@ footer {
 
 #stats {
     background-color: #2f3b1e;
+    background-blend-mode: soft-light;
     padding: 15px;
     overflow-y: scroll;
     height: 600px;

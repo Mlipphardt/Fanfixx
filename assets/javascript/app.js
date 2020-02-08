@@ -45,7 +45,7 @@ $("#sportsQuery-submit").on("click", function (event) {
   let sportsItem = $("#sportsQuery-text").val().trim();
   let instaItem = $("#instaQuery-text").val().trim();
 
-  //pull instagram info from api
+  /* //pull instagram info from api
   var instaSettings = {
     "async": true,
     "crossDomain": true,
@@ -75,7 +75,7 @@ $("#sportsQuery-submit").on("click", function (event) {
     //Resets search text
     $("#sportsQuery-text").val("");
     $("#instaQuery-text").val("");
-  })
+  })*/
 })
 
 
@@ -87,7 +87,7 @@ $('#sportsQuery-text').on('keydown', function (event) {
     let sportsItem = $("#sportsQuery-text").val().trim();
     let instaItem = $("#instaQuery-text").val().trim();
 
-    //pull instagram info from api
+   /* //pull instagram info from api
      var instaSettings = {
        "async": true,
        "crossDomain": true,
@@ -118,7 +118,7 @@ $('#sportsQuery-text').on('keydown', function (event) {
        //Resets search text
        $("#sportsQuery-text").val("");
        $("#instaQuery-text").val("");
-     })
+     })*/
   }
 })
 
@@ -277,7 +277,7 @@ function instaInfo() {
 
   resetInstaPage();
 
-  //pull instagram info from api
+  /*//pull instagram info from api
    var instaSettings = {
      "async": true,
      "crossDomain": true,
@@ -308,7 +308,7 @@ function instaInfo() {
          $('#posts').append(post).append(caption);
        }
      }
-   })
+   })*/
 }
 
 function playerConfirmation() {
