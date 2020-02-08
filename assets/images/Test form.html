@@ -33,25 +33,24 @@
       <button type="submit" class="btn btn-default">Submit</button>
     </form>
     <script>
-    
-    var apiKey = 21dcbe45-b31f-45aa-a7b6-73d49b
-    var queryURL = https://api.mysportsfeeds.com/v2.1/pull/nhl/{season}/games.{format}
+    var sport = sport-input
+    var apiKey = 23027292-a3a2-497f-9a25-24da9f
+    var queryURL = https://api.mysportsfeeds.com/v2.1/pull/nba/current/standings.json
     
     $.ajax
 ({
   type: "GET",
-  url: queryURL,
+  url: {queryURL},
   dataType: 'json',
   async: false,
   headers: {
-    "Authorization": "Basic " + btoa({21dcbe45-b31f-45aa-a7b6-73d49b} + ":" + MYSPORTSFEEDS)
+    "Authorization": "Basic " + btoa({23027292-a3a2-497f-9a25-24da9f} + ":" + {Bluedoor#19})
   },
   data: '{ "comment" }',
   success: function (){
     alert('Thanks for your comment!'); 
   }
 });
-    
     
     </script>
         
