@@ -4,9 +4,9 @@ body {
 }
 
 .banner-image {
-    margin: -67px 0px 0px -250px;
-    width: 600px;
-    height: 130px;
+    margin: -60px 0px 0px -150px;
+    width: 650px;
+    height: 120px;
 }
 
 a {
@@ -108,7 +108,7 @@ footer {
     padding: 5px;
     text-align: center;
     width: 180px;
-    margin-top: -27px;
+    margin-top: -31px;
 }
 
 .link:hover {
