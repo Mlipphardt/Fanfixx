@@ -42,6 +42,7 @@
 
             <div class="form-group">
                 <input type="text" class="form-control" id="sportsQuery-text" placeholder="Search Player or Team">
+                <input type="text" class="form-control" id="instaQuery-text" placeholder="Player or Team instagram">
                 <button type="submit" class="btn btn-primary" id="sportsQuery-submit">Submit</button>
             </div>
 
@@ -53,15 +54,13 @@
     <div class="container">
 
         <div class="row">
-
             <!-- Row to hold user buttons -->
-            <div class="col-md-12" id="buttons">
-
-
-            </div>
+            <div class="col-md-12" id="buttons"></div>
         </div>
 
+
         <!-- Modal -->
+
         <div class="popup-overlay">
             <div class="popup-content">
                 <div class="row">
@@ -78,24 +77,12 @@
 
                     </div>
                     <div class="col" id="insta">
-                        <div class="d-flex bd-highlight instaQuery-box">
-
-                            <div class="form-group" id="insta-form">
-                                <input type="text" class="form-control" id="insta-box"
-                                    placeholder="Instagram Handle">
-                                <button type="submit" class="btn btn-primary" id="instaQuery-submit">Submit</button>
-                            </div>
-
-                        </div>
                         <div id="posts"></div>
                     </div>
-                    <div class="col" id="twitter">twitter</div>
-
                 </div>
                 <button class="close">Close</button>
             </div>
         </div>
-
     </div>
     </div>
 

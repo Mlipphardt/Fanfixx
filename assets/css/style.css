@@ -45,6 +45,13 @@ a:hover {
     height: 35px;
 }
 
+#instaQuery-text {
+    font-size: 14px;
+    border-radius: 2px;
+    line-height: .8;
+    height: 35px;
+}
+
 label {
     color: blanchedalmond;
 }
@@ -159,7 +166,7 @@ footer {
 }
 
 #stats {
-    background-color: purple;
+    background-color: #2f3b1e;
 }
 
 #insta-box {
