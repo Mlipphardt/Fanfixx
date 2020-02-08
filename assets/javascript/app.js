@@ -31,26 +31,30 @@ function resetStatsPage() {
   $("#NextGames").empty();
 };
 
+function resetInstaPage() {
+  $("#posts").empty();
+};
+
 //Click event for search button
 $("#sportsQuery-submit").on("click", function (event) {
   event.preventDefault();
 
-  let item = $("#sportsQuery-text").val().trim();
+  let sportsItem = $("#sportsQuery-text").val().trim();
+  let instaItem = $("#instaQuery-text").val().trim();
 
-  // push lower case name to firebase
-  sportsItem = item.toLowerCase();
-
-  if (sportsItem === '') {
-    //use modular but using alert for now
-    alert("Please Enter a Player or Team Name");
+  if (sportsItem === '' || instaItem === '') {
   }
   else {
     // pass to firebase
-    db.ref().push({ userQuery: sportsItem, });
+    db.ref().push({
+      userQuery: sportsItem,
+      instagram: instaItem,
+    });
   }
 
   //Resets search text
   $("#sportsQuery-text").val("");
+  $("#instaQuery-text").val("");
 })
 
 // to take in user query on hitting enter
@@ -58,42 +62,41 @@ $('#sportsQuery-text').on('keydown', function (event) {
 
   if (event.keyCode === 13) {
 
-    let item = $("#sportsQuery-text").val().trim();
+    let sportsItem = $("#sportsQuery-text").val().trim();
+    let instaItem = $("#instaQuery-text").val().trim();
 
-    // push lower case name to firebase
-    sportsItem = item.toLowerCase();
-
-    if (sportsItem === '') {
-      //use modular but using alert for now
-      alert("Please Enter a Player or Team Name");
+    if (sportsItem === '' || instaItem === '') {
     }
     else {
       sportsItem = $("#sportsQuery-text").val().trim();
       // pass to firebase
-      db.ref().push({ userQuery: sportsItem, });
+      db.ref().push({
+        userQuery: sportsItem,
+        instagram: instaItem,
+      });
     }
 
     //Resets search text
     $("#sportsQuery-text").val("");
+    $("#instaQuery-text").val("");
   }
 })
 
 // make buttons from database
 db.ref().on('child_added', function (data) {
 
-  var dv = data.val()
-  let query = dv.userQuery
+  var dv = data.val();
+  let query = dv.userQuery;
+  let insta = dv.instagram;
   // pass uppercase name to avatar label
   let labelName = query.replace(/\b[a-z]/g, function (letter) {
     return letter.toUpperCase();
   });
-  // pass as lowercase 
-  let userQuery = query.toLowerCase()
-  console.log('dv.userQuery: ' + userQuery + ', ' + labelName)
 
   //Creates buttons
   var imgDiv = $('<div class="sports-btn">');
   imgDiv.attr("data-name", query);
+  imgDiv.attr('data-insta', insta);
 
   var sportsBtn = $("<a href=" + queryLink + " class='link'>");
 
@@ -112,7 +115,7 @@ db.ref().on('child_added', function (data) {
 // initial button population from firebase
 db.ref().on('value', function (data) {
 
-  dv = data.val()
+  dv = data.val();
 
   if (data.child('userQuery').exists()) {
     //Creates buttons
@@ -130,7 +133,7 @@ db.ref().on('value', function (data) {
     $("#buttons").append(token);
   }
 }, function (errorHandle) {
-  console.log("Errors occured: " + errorHandle.code)
+  console.log("Errors occured: " + errorHandle.code);
 })
 
 $(".close, .popup").on("click", function () {
@@ -143,7 +146,6 @@ function sportsInfo() {
   //Saves search term in variable for queries
   let sportItem = $(this).attr("data-name");
   console.log(sportItem)
-
 
   resetStatsPage();
 
@@ -198,109 +200,52 @@ function sportsInfo() {
 };
 
 
-
 // should we set a height limit and make individual columns scrolable so
 // content can be seen side by side instead of scrolling past one columns
 // content in order to see all of another columns content????????
 
 
+function instaInfo() {
 
-// get instagram acct name from submission box
-$('#instaQuery-submit').on('click', function (event) {
-  event.preventDefault;
-  $('.form-group').hide();
+  let instaItem = $(this).attr("data-insta");
+  console.log(instaItem)
 
+  resetInstaPage();
 
-  // push insta handle to firebase pseudo code
-  // get name player/team from 'this.sportsItem'
-  // go into firebase
-  // for loop to check each database child element
-  // if this.sports item === element.userQuery
-  // add child...instaHandle
-  // recall instahandle to api url for future visits to the site
-
-
-  let instaHandle = $('#insta-box').val().trim()
-  //let instaData = 
-  //console.log('instaData: ' +instaData)
-
-  if (instaHandle === '') { }
-  else {
-    // clear text box
-    $('#insta-box').val('');
-
-    //pull instagram info from api
-    var instaSettings = {
-      "async": true,
-      "crossDomain": true,
-      "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaHandle + "&lang=en",
-      "method": "GET",
-      "headers": {
-        "x-rapidapi-host": "instagram9.p.rapidapi.com",
-        "x-rapidapi-key": "24e7ba1147msh84b2d9ba4889f35p191fc7jsn48829d32f784"
-      }
+  //pull instagram info from api
+  var instaSettings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaItem + "&lang=en",
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "instagram9.p.rapidapi.com",
+      "x-rapidapi-key": "24e7ba1147msh84b2d9ba4889f35p191fc7jsn48829d32f784"
     }
+  }
 
-    $.ajax(instaSettings).done(function (response) {
-      console.log(response);
-      console.log(response.posts);
+  $.ajax(instaSettings).done(function (response) {
+    console.log(response);
+    console.log(response.posts);
 
-      let responseName = response.fullName;
-      let instaName = responseName.toLowerCase();
-      console.log(instaName);
+    let responseName = response.fullName;
+    console.log(responseName);
 
-      for (let i = 0; i < response.posts.length; i++) {
-        let post = $("<img alt='post " + [i] + "' src=" + response.posts[i].attachments.link + " class='photo'></img>");
-        let caption = $('<p class="photoLabel">"' + response.posts[i].text + '"</p>');
+    for (let i = 0; i < response.posts.length; i++) {
 
+      let post = $("<img alt='post " + [i] + "' src=" + response.posts[i].attachments.link + " class='photo'></img>");
+      if (response.posts[i].text === null) {
+        let caption = $('<p class="photoLabel"></p>');
         $('#posts').append(post).append(caption);
       }
-    })
-  }
-})
-
-// instagram submit search by hitting enter
-/*$('#insta-box').on('keydown', function (event) {
-
-  let instaHandle = $('#insta-box').val().trim()
-
-  if (event.keyCode === 13) {
-
-    if (instaHandle === '') {
-      alert("Please Enter a Player or Team Instagram ID");
+      else {
+        let caption = $('<p class="photoLabel">"' + response.posts[i].text + '"</p>');
+        $('#posts').append(post).append(caption);
+      }      
     }
-    else {
-      // clear text box
-      $('#insta-box').val('');
-      $('.form-group').hide();
-
-      //pull instagram info from api
-      var instaSettings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaHandle + "&lang=en",
-        "method": "GET",
-        "headers": {
-          "x-rapidapi-host": "instagram9.p.rapidapi.com",
-          "x-rapidapi-key": "24e7ba1147msh84b2d9ba4889f35p191fc7jsn48829d32f784"
-        }
-      }
-
-      $.ajax(instaSettings).done(function (response) {
-        console.log('response.posts: ' +response.posts);
-
-        for (let i = 0; i < response.posts.length; i++) {
-          let post = $("<img alt='post " + [i] + "' src=" + response.posts[i].attachments.link + " class='photo'></img>");
-          let caption = $('<p class="photoLabel">"' + response.posts[i].text + '"</p>')
-
-          $('#posts').append(post).append(caption);
-        }
-      })
-    }
-  }
-})*/
-
-// push instagram handle to firebase for that player
+  })
+}
 
 $(document).on("click", ".sports-btn", sportsInfo)
+$(document).on("click", ".sports-btn", instaInfo)
 
