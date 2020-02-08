@@ -19,16 +19,6 @@ a:hover {
     text-decoration: none!important;
 }
 
-.popup-overlay {
-    color: white;
-}
-
-.popup-content {
-    background-color: purple;
-    color: white;
-    height: 800px;
-}
-
 #sportsQuery-submit {
     height: 25px;
     width: 75px;
@@ -167,13 +157,19 @@ footer {
 #insta {
     background-color: #771c0c;
     padding: 15px;
-    overflow: scroll;
+    overflow-y: scroll;
+    height: 600px;
+    margin-bottom: 40px;
+    color: #eee5d9;
 }
 
 #stats {
     background-color: #2f3b1e;
     padding: 15px;
-    overflow: scroll;
+    overflow-y: scroll;
+    height: 600px;
+    margin-bottom: 40px;
+    color: #eee5d9;
 }
 
 #insta-box {
@@ -209,4 +205,8 @@ footer {
     height: 180px;
     width: 180px;
     z-index: -1;
+}
+
+::-webkit-scrollbar {
+	display: none;
 }

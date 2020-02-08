@@ -21,7 +21,7 @@ firebase.initializeApp(caroFirebaseConfig);
 var db = firebase.database();
 
 // initially hide popup content
-$(".popup, .popup-content").hide();
+$(".popup-content").hide();
 
 function resetStatsPage() {
   $("#playerName").text();
@@ -46,7 +46,7 @@ $("#sportsQuery-submit").on("click", function (event) {
   let instaItem = $("#instaQuery-text").val().trim();
 
   //pull instagram info from api
-  /*var instaSettings = {
+  var instaSettings = {
     "async": true,
     "crossDomain": true,
     "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaItem + "&lang=en",
@@ -75,7 +75,7 @@ $("#sportsQuery-submit").on("click", function (event) {
     //Resets search text
     $("#sportsQuery-text").val("");
     $("#instaQuery-text").val("");
-  })*/
+  })
 })
 
 
@@ -88,7 +88,7 @@ $('#sportsQuery-text').on('keydown', function (event) {
     let instaItem = $("#instaQuery-text").val().trim();
 
     //pull instagram info from api
-    /* var instaSettings = {
+     var instaSettings = {
        "async": true,
        "crossDomain": true,
        "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaItem + "&lang=en",
@@ -118,7 +118,7 @@ $('#sportsQuery-text').on('keydown', function (event) {
        //Resets search text
        $("#sportsQuery-text").val("");
        $("#instaQuery-text").val("");
-     })*/
+     })
   }
 })
 
@@ -183,8 +183,8 @@ db.ref().on('value', function (data) {
 })
 
 //Close button for popup, has a slow fade-out animation.
-$(".close, .popup").on("click", function () {
-  $(".popup, .popup-content").fadeOut("slow");
+$(".close").on("click", function () {
+  $(".popup-content").fadeOut("slow");
 });
 
 // pull sports info from api
@@ -196,7 +196,7 @@ function sportsInfo() {
 
   resetStatsPage();
 
-  $(".popup, .popup-content").fadeIn("slow");
+  $(".popup-content").fadeIn("slow");
 
   //AJAX requests for data
   $.ajax({
@@ -278,7 +278,7 @@ function instaInfo() {
   resetInstaPage();
 
   //pull instagram info from api
-  /* var instaSettings = {
+   var instaSettings = {
      "async": true,
      "crossDomain": true,
      "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaItem + "&lang=en",
@@ -308,7 +308,7 @@ function instaInfo() {
          $('#posts').append(post).append(caption);
        }
      }
-   })*/
+   })
 }
 
 function playerConfirmation() {
