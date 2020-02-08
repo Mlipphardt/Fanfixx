@@ -96,7 +96,7 @@ footer {
     z-index: -1;
 }
 
-.avatar-img:hover{
+.avatar-img:hover {
     opacity: .5;
 }
 
@@ -155,7 +155,7 @@ footer {
 }
 
 #insta {
-    background-color: rgba(119, 28, 12, 0.75);
+    background-color: rgba(57, 58, 55, 0.75);
     padding: 15px;
     overflow-y: scroll;
     height: 600px;
@@ -165,8 +165,7 @@ footer {
 }
 
 #stats {
-    background-color: rgba(47, 59, 30, 0.75);
-    
+    background-color: rgba(57, 58, 55, 0.75);
     padding: 15px;
     overflow-y: scroll;
     height: 600px;
@@ -204,5 +203,5 @@ footer {
 }
 
 ::-webkit-scrollbar {
-	display: none;
+    display: none;
 }
