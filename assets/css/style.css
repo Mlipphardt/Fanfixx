@@ -154,34 +154,25 @@ footer {
     text-align: center;
 }
 
-#twitter {
-    background-color: #2f5bb7;
-}
-
 #insta {
-    background-color: #771c0c;
+    background-color: rgba(119, 28, 12, 0.75);
     padding: 15px;
     overflow-y: scroll;
     height: 600px;
     margin-bottom: 40px;
     color: #eee5d9;
+    border-radius: 0 6px 6px 0;
 }
 
 #stats {
-    background-color: #2f3b1e;
-    background-blend-mode: soft-light;
+    background-color: rgba(47, 59, 30, 0.75);
+    
     padding: 15px;
     overflow-y: scroll;
     height: 600px;
     margin-bottom: 40px;
     color: #eee5d9;
-}
-
-#insta-box {
-    font-size: 14px;
-    border-radius: 2px;
-    line-height: .8;
-    height: 35px;
+    border-radius: 6px 0 0 6px;
 }
 
 .photo {
