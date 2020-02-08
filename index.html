@@ -12,8 +12,6 @@
     <script async src="https://cse.google.com/cse.js?cx=001341755685360009368:bepi9cillxr"></script>
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap" rel="stylesheet">
-    <!-- reset css -->
-    <link rel="stylesheet" href="assets/css/reset.css">
     <!-- our .css -->
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- font awesome -->
@@ -24,8 +22,6 @@
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
     <!-- Jquery link -->
     <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- API keys -->
-    <script type="text/javascript" src="assets/javascript/APIkeys.js"></script>
     <!-- our .js -->
     <script type="text/javascript" src="assets/javascript/app.js" defer></script>
     <title>Fanfixx</title>
@@ -58,21 +54,20 @@
             </div>
         </div>
 
-
+        <!-- Modal -->
         <div class="popup-overlay">
-            <!--Creates the popup content-->
             <div class="popup-content">
                 <div class="row">
                     <div class="col" id="stats">
 
                         <h2>Player Stats:</h2>
+                        <div id = "playerName"></div>
                         <p id="playerStats"></p>
                         <p id="playerTeam"></p>
                         <p id="playerPosition"></p>
-                        <div id="NextGames">Next Games</div>
-                        <div id="LastGames">Past Games</div>
+                        <div id="NextGames"></div>
+                        <div id="LastGames"></div>
                         <p id="playerBio"></p>
-                        <!--popup's close button-->
 
                     </div>
                     <div class="col" id="insta">
