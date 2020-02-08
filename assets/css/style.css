@@ -96,7 +96,7 @@ footer {
 .sports-img {
     height: 180px;
     width: 180px;
-    z-index: -1;
+    z-index: -2;
 }
 
 .label {
@@ -208,5 +208,11 @@ footer {
 
 #insta-form{
     margin: 20px auto 0px;
+}
+
+.avatar-img{
+    height: 180px;
+    width: 180px;
+    z-index: -1;
 }
 
