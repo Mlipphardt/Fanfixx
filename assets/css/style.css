@@ -29,6 +29,7 @@ a:hover {
     justify-content: space-around;
     line-height: .8;
     margin-top: -5px;
+    padding: 0px;
 }
 
 #sportsQuery-text {
@@ -204,4 +205,15 @@ footer {
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+#row{
+    margin-bottom: 80px;
+}
+
+.close{
+    margin-top: -110px;
+    color: #771c0c;
+    opacity: .8;
+    text-shadow: 0 1px 0 #a19f9f;
 }

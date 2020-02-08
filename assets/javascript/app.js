@@ -264,12 +264,6 @@ function sportsInfo() {
   });
 };
 
-
-// should we set a height limit and make individual columns scrolable so
-// content can be seen side by side instead of scrolling past one columns
-// content in order to see all of another columns content????????
-
-
 function instaInfo() {
 
   let instaItem = $(this).attr("data-insta");
