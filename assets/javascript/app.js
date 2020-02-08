@@ -24,11 +24,14 @@ var db = firebase.database();
 $(".popup, .popup-content").hide();
 
 function resetStatsPage() {
+  $("#playerName").text();
+  $("#playerName").empty();
   $("#playerTeam").text("");
   $("#playerStats").text("");
   $("#playerPosition").text("");
   $("#playerBio").text("");
   $("#NextGames").empty();
+  $("#LastGames").empty();
 };
 
 //Click event for search button
@@ -121,6 +124,7 @@ db.ref().on('value', function (data) {
   console.log("Errors occured: " + errorHandle.code)
 })
 
+//Close button for popup, has a slow fade-out animation.
 $(".close, .popup").on("click", function () {
   $(".popup, .popup-content").fadeOut("slow");
 });
@@ -134,50 +138,67 @@ function sportsInfo() {
 
   $(".popup, .popup-content").fadeIn("slow");
 
-  //TODO: ajax requests will go here
+  //AJAX requests for data
   $.ajax({
     "url": "https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=" + sportItem,
     "method": "GET",
   }).done(function (response) {
-    let playerData = response.player[0];
-    console.log(playerData);
-    $("#playerTeam").text("Team: " + playerData.strTeam)
-    $("#playerPosition").text("Position: " + playerData.strPosition);
-    $("#playerBio").text("Bio: " + playerData.strDescriptionEN)
-    $.ajax({
-      "url": "https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=" + playerData.idTeam,
-      "method": "GET",
-    }).done(function (teamresponse) {
-      console.log(teamresponse)
-      for (let i = 0; i < teamresponse.events.length; i++) {
-        let nextGame = $("<p>");
-        let gameDetails = $("<p>");
-        let thisEvent = teamresponse.events[i];
-        $(nextGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
-        $(gameDetails).text("Playing: " + thisEvent.strEvent);
-        $("#NextGames").append(nextGame);
-        $("#NextGames").append(gameDetails);
-      }
-    });
-    $.ajax({
-      "url": "https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=" + playerData.idTeam,
-      "method": "GET",
-    }).done(function (pasteventresponse) {
-      console.log(pasteventresponse)
-      for (let i = 0; i < pasteventresponse.results.length; i++) {
-        let lastGame = $("<p>");
-        let gameDetails = $("<p>");
-        let gameScore = $("<p>");
-        let thisEvent = pasteventresponse.results[i];
-        console.log(thisEvent);
-        $(lastGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
-        $(gameDetails).text("Playing: " + thisEvent.strEvent);
-        $(gameScore).text("Final Score: " + thisEvent.intHomeScore + " to " + thisEvent.intAwayScore);
-        $("#LastGames").append(lastGame);
-        $("#LastGames").append(gameDetails);
-        $("#LastGames").append(gameScore);
-      }
-    });
+    //If multiple players are found, will display to user in popup
+    if(response.player.length > 1){
+      console.log(response.player)
+      let didyoumean = $("<p> Did you mean... </p>")
+      $("#playerName").append(didyoumean);
+      for (let i = 0; i < response.player.length; i++) {
+        let foundplayer = $("<p>");
+        $(foundplayer).addClass("player-suggestion");
+        //When option clicked, data-name will be pulled to get exact ID for request.
+        let playerData = response.player[i];
+        $(foundplayer).attr("data-name", playerData.idPlayer);
+        $(foundplayer).text(playerData.strPlayer + " of the " + playerData.strTeam + "?");
+        $("#playerName").append(foundplayer);
+      } 
+    } else {
+     
+      let playerData = response.player[0];
+      $("#playerTeam").text("Team: " + playerData.strTeam)
+      $("#playerPosition").text("Position: " + playerData.strPosition);
+      $("#playerBio").text("Bio: " + playerData.strDescriptionEN)
+      $.ajax({
+        "url": "https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=" + playerData.idTeam,
+        "method": "GET",
+      }).done(function (teamresponse) {
+        console.log(teamresponse)
+        $("#NextGames").append("<p>Next games...</p>");
+        for (let i = 0; i < teamresponse.events.length; i++) {
+          let nextGame = $("<p>");
+          let gameDetails = $("<p>");
+          let thisEvent = teamresponse.events[i];
+          $(nextGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
+          $(gameDetails).text("Playing: " + thisEvent.strEvent);
+          $("#NextGames").append(nextGame);
+          $("#NextGames").append(gameDetails);
+        }
+      });
+      $.ajax({
+        "url": "https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=" + playerData.idTeam,
+        "method": "GET",
+      }).done(function (pasteventresponse) {
+        $("#LastGames").append("<p>Last games...</p>");
+        for (let i = 0; i < pasteventresponse.results.length; i++) {
+          let lastGame = $("<p>");
+          let gameDetails = $("<p>");
+          let gameScore = $("<p>");
+          let thisEvent = pasteventresponse.results[i];
+          console.log(thisEvent);
+          $(lastGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
+          $(gameDetails).text("Playing: " + thisEvent.strEvent);
+          $(gameScore).text("Final Score: " + thisEvent.intHomeScore + " to " + thisEvent.intAwayScore);
+          $("#LastGames").append(lastGame);
+          $("#LastGames").append(gameDetails);
+          $("#LastGames").append(gameScore);
+        }
+      });
+    };
   });
 };
 
@@ -277,5 +298,64 @@ $('#insta-box').on('keydown', function (event) {
   }
 })*/
 
+function playerConfirmation() {
+
+  //Saves search term in variable for queries
+  let sportItem = $(this).attr("data-name");
+  console.log(sportItem);
+  resetStatsPage();
+
+  //AJAX requests for data
+  $.ajax({
+    "url": "https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=" + sportItem,
+    "method": "GET",
+  }).done(function (response) {
+    console.log(response)
+    let playerData = response.players[0];
+    $("#playerTeam").text("Team: " + playerData.strTeam)
+    $("#playerPosition").text("Position: " + playerData.strPosition);
+    $("#playerBio").text("Bio: " + playerData.strDescriptionEN)
+    $.ajax({
+      "url": "https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=" + playerData.idTeam,
+      "method": "GET",
+    }).done(function (teamresponse) {
+      console.log(teamresponse)
+      $("#NextGames").append("<p>Next games...</p>");
+      for (let i = 0; i < teamresponse.events.length; i++) {
+        let nextGame = $("<p>");
+        let gameDetails = $("<p>");
+        let thisEvent = teamresponse.events[i];
+        $(nextGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
+        $(gameDetails).text("Playing: " + thisEvent.strEvent);
+        $("#NextGames").append(nextGame);
+        $("#NextGames").append(gameDetails);
+    }
+  });
+    $.ajax({
+      "url": "https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=" + playerData.idTeam,
+      "method": "GET",
+    }).done(function (pasteventresponse) {
+      $("#LastGames").append("<p>Last games...</p>");
+      for (let i = 0; i < pasteventresponse.results.length; i++) {
+        let lastGame = $("<p>");
+        let gameDetails = $("<p>");
+        let gameScore = $("<p>");
+        let thisEvent = pasteventresponse.results[i];
+        console.log(thisEvent);
+        $(lastGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
+        $(gameDetails).text("Playing: " + thisEvent.strEvent);
+        $(gameScore).text("Final Score: " + thisEvent.intHomeScore + " to " + thisEvent.intAwayScore);
+        $("#LastGames").append(lastGame);
+        $("#LastGames").append(gameDetails);
+        $("#LastGames").append(gameScore);
+      }
+    });
+  });  
+};
+
+
 $(document).on("click", ".sports-btn", sportsInfo)
+
+$(document).on("click", ".player-suggestion", playerConfirmation)
+
 
