@@ -79,6 +79,13 @@ footer {
     margin: 10px;
 }
 
+.player-suggestion:hover {
+    background-color: aqua;
+    color: black;
+    font-size: large;
+    cursor: default;
+}
+
 .sports-img {
     height: 180px;
     width: 180px;
