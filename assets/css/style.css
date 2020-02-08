@@ -35,7 +35,7 @@ a:hover {
     background-color: #357ae8;
     justify-content: space-around;
     line-height: .8;
-    margin-top: 8px;
+    margin-top: -5px;
 }
 
 #sportsQuery-text {
@@ -43,6 +43,10 @@ a:hover {
     border-radius: 2px;
     line-height: .8;
     height: 35px;
+    border: 1px solid #515252;
+    width: 160px;
+    width: 168px;
+    padding-left: 8px;
 }
 
 #instaQuery-text {
@@ -50,6 +54,10 @@ a:hover {
     border-radius: 2px;
     line-height: .8;
     height: 35px;
+    border: 1px solid #515252;
+    width: 160px;
+    width: 168px;
+    padding-left: 8px;
 }
 
 label {
@@ -125,13 +133,9 @@ footer {
     text-align: left;
 }
 
-.form-control {
-    border: 1px solid #515252;
-}
-
 .query-box {
     float: left;
-    margin-top: -40px;
+    margin-top: -56px;
 }
 
 #page-head {
@@ -174,18 +178,6 @@ footer {
     border-radius: 2px;
     line-height: .8;
     height: 35px;
-}
-
-#instaQuery-submit {
-    height: 25px;
-    width: 75px;
-    font-size: 14px;
-    border-radius: 2px;
-    border-color: #2f5bb7;
-    background-color: #357ae8;
-    justify-content: space-around;
-    line-height: .8;
-    margin-top: 8px;
 }
 
 .photo {
