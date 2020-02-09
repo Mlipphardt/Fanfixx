@@ -279,3 +279,64 @@ footer {
         margin-bottom: 0px;
     }
 }
+
+@media screen and (max-width: 770px) {
+    .avatar-img {
+        height: 120px;
+        width: 120px;
+    }
+    .sports-btn{
+        height: 120px;
+        width: 120px;
+    }
+    .label {
+        font-size: 12px;
+        padding: 0px;
+        text-align: center;
+        width: 120px;
+        margin-top: -18px;
+    }
+    .banner-image {
+        margin: -60px 0px 0px -180px;
+        width: 390px;
+        height: 116px;
+    }
+    #sportsQuery-submit {
+        height: 18px;
+        width: 61px;
+        font-size: 10px;
+        margin-top: -8px;
+    }
+    #sportsQuery-text {
+        font-size: 11px;
+        border-radius: 2px;
+        line-height: .8;
+        height: 28px;
+        border: 1px solid #515252;
+        width: 124px;
+        padding-left: 2px;
+        margin-top: 6px;
+    }
+    #instaQuery-text {
+        font-size: 11px;
+        border-radius: 2px;
+        line-height: .8;
+        height: 28px;
+        border: 1px solid #515252;
+        width: 124px;
+        padding-left: 2px;
+        margin-top: 6px;
+    }
+    footer {
+        padding: 5px;
+        clear: both;
+        padding-top: 0px;
+        height: 50px;
+    }
+    .fa-2x {
+        font-size: 15px;
+    }
+    .links {
+        margin-bottom: 0px;
+    }
+}
