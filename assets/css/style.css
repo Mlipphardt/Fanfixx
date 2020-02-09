@@ -207,14 +207,75 @@ footer {
     display: none;
 }
 
-#row{
+#row {
     margin-bottom: 80px;
 }
 
-.close{
+.close {
     margin-top: -110px;
     color: #771c0c;
     opacity: .8;
     text-shadow: 0 1px 0 #a19f9f;
     margin-right: 15px;
+}
+
+@media screen and (max-width: 1030px) {
+    .avatar-img {
+        height: 140px;
+        width: 140px;
+    }
+    .sports-btn{
+        height: 140px;
+        width: 140px;
+    }
+    .label {
+        font-size: 13px;
+        padding: 3px;
+        text-align: center;
+        width: 140px;
+        margin-top: -25px;
+    }
+    .banner-image {
+        margin: -60px 0px 0px -180px;
+        width: 500px;
+        height: 118px;
+    }
+    #sportsQuery-submit {
+        height: 20px;
+        width: 65px;
+        font-size: 12px;
+        margin-top: -8px;
+    }
+    #sportsQuery-text {
+        font-size: 14px;
+        border-radius: 2px;
+        line-height: .8;
+        height: 28px;
+        border: 1px solid #515252;
+        width: 160px;
+        padding-left: 8px;
+        margin-top: 6px;
+    }
+    #instaQuery-text {
+        font-size: 14px;
+        border-radius: 2px;
+        line-height: .8;
+        height: 28px;
+        border: 1px solid #515252;
+        width: 160px;
+        padding-left: 8px;
+        margin-top: 6px;
+    }
+    footer {
+        padding: 5px;
+        clear: both;
+        padding-top: 0px;
+        height: 50px;
+    }
+    .fa-2x {
+        font-size: 15px;
+    }
+    .links {
+        margin-bottom: 0px;
+    }
 }

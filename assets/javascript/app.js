@@ -46,7 +46,7 @@ $("#sportsQuery-submit").on("click", function (event) {
   let instaItem = $("#instaQuery-text").val().trim();
 
   //pull instagram info from api
-  var instaSettings = {
+  /*var instaSettings = {
     "async": true,
     "crossDomain": true,
     "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaItem + "&lang=en",
@@ -75,7 +75,7 @@ $("#sportsQuery-submit").on("click", function (event) {
     //Resets search text
     $("#sportsQuery-text").val("");
     $("#instaQuery-text").val("");
-  })
+  })*/
 })
 
 
@@ -88,7 +88,7 @@ $('#sportsQuery-text').on('keydown', function (event) {
     let instaItem = $("#instaQuery-text").val().trim();
 
     //pull instagram info from api
-     var instaSettings = {
+     /*var instaSettings = {
        "async": true,
        "crossDomain": true,
        "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaItem + "&lang=en",
@@ -118,7 +118,7 @@ $('#sportsQuery-text').on('keydown', function (event) {
        //Resets search text
        $("#sportsQuery-text").val("");
        $("#instaQuery-text").val("");
-     })
+     })*/
   }
 })
 
@@ -131,7 +131,7 @@ $('#instaQuery-text').on('keydown', function (event) {
     let instaItem = $("#instaQuery-text").val().trim();
 
     //pull instagram info from api
-     var instaSettings = {
+     /*var instaSettings = {
        "async": true,
        "crossDomain": true,
        "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaItem + "&lang=en",
@@ -161,7 +161,7 @@ $('#instaQuery-text').on('keydown', function (event) {
        //Resets search text
        $("#sportsQuery-text").val("");
        $("#instaQuery-text").val("");
-     })
+     })*/
   }
 })
 
@@ -315,7 +315,7 @@ function instaInfo() {
   resetInstaPage();
 
   //pull instagram info from api
-   var instaSettings = {
+   /*var instaSettings = {
      "async": true,
      "crossDomain": true,
      "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaItem + "&lang=en",
@@ -345,7 +345,7 @@ function instaInfo() {
          $('#posts').append(post).append(caption);
        }
      }
-   })
+   })*/
 }
 
 function playerConfirmation() {
