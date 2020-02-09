@@ -21,7 +21,7 @@ firebase.initializeApp(caroFirebaseConfig);
 var db = firebase.database();
 
 // initially hide popup content
-$(".popup, .popup-content").hide();
+$(".popup-content").hide();
 
 function resetStatsPage() {
   $("#playerName").text();
@@ -88,7 +88,50 @@ $('#sportsQuery-text').on('keydown', function (event) {
     let instaItem = $("#instaQuery-text").val().trim();
 
     //pull instagram info from api
-    /* var instaSettings = {
+     /*var instaSettings = {
+       "async": true,
+       "crossDomain": true,
+       "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaItem + "&lang=en",
+       "method": "GET",
+       "headers": {
+         "x-rapidapi-host": "instagram9.p.rapidapi.com",
+         "x-rapidapi-key": "24e7ba1147msh84b2d9ba4889f35p191fc7jsn48829d32f784"
+       }
+     }
+
+     $.ajax(instaSettings).done(function (response) {
+       console.log(response);
+
+       let avatar = response.avatar
+
+       if (sportsItem === '' || instaItem === '') {
+       }
+       else {
+         // pass to firebase
+         db.ref().push({
+           userQuery: sportsItem,
+           instagram: instaItem,
+           avatar: avatar,
+         });
+       }
+
+       //Resets search text
+       $("#sportsQuery-text").val("");
+       $("#instaQuery-text").val("");
+     })*/
+  }
+})
+
+// to take in user query on hitting enter
+$('#instaQuery-text').on('keydown', function (event) {
+
+  if (event.keyCode === 13) {
+
+    let sportsItem = $("#sportsQuery-text").val().trim();
+    let instaItem = $("#instaQuery-text").val().trim();
+
+    //pull instagram info from api
+     /*var instaSettings = {
        "async": true,
        "crossDomain": true,
        "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaItem + "&lang=en",
@@ -142,7 +185,7 @@ db.ref().on('child_added', function (data) {
 
   var sportsBtn = $("<a href=" + queryLink + " class='link'>");
 
-  var image = $('<img src="' + avatar + '" alt="sportsBlock" class="sports-img">');
+  var image = $('<img src="' + avatar + '" alt="sportsBlock" class="avatar-img">');
   var label = $("<div class='label'>" + labelName + "</div>");
   var innerBlock = sportsBtn.append(image).append(label);
 
@@ -170,7 +213,7 @@ db.ref().on('value', function (data) {
 
     var sportsBtn = $("<a href=" + queryLink + " class='link'>");
 
-    var image = $('<img src="' + avatar + '" alt="sportsBlock" class="sports-img">');
+    var image = $('<img src="' + avatar + '" alt="sportsBlock" class="avatar-img">');
     var label = $("<div class='label'>" + query + "</div>");
     var innerBlock = sportsBtn.append(image).append(label);
 
@@ -183,8 +226,8 @@ db.ref().on('value', function (data) {
 })
 
 //Close button for popup, has a slow fade-out animation.
-$(".close, .popup").on("click", function () {
-  $(".popup, .popup-content").fadeOut("slow");
+$(".close").on("click", function () {
+  $(".popup-content").fadeOut("slow");
 });
 
 // pull sports info from api
@@ -196,7 +239,7 @@ function sportsInfo() {
 
   resetStatsPage();
 
-  $(".popup, .popup-content").fadeIn("slow");
+  $(".popup-content").fadeIn("slow");
 
   //AJAX requests for data
   $.ajax({
@@ -264,12 +307,6 @@ function sportsInfo() {
   });
 };
 
-
-// should we set a height limit and make individual columns scrolable so
-// content can be seen side by side instead of scrolling past one columns
-// content in order to see all of another columns content????????
-
-
 function instaInfo() {
 
   let instaItem = $(this).attr("data-insta");
@@ -278,7 +315,7 @@ function instaInfo() {
   resetInstaPage();
 
   //pull instagram info from api
-  /* var instaSettings = {
+   /*var instaSettings = {
      "async": true,
      "crossDomain": true,
      "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaItem + "&lang=en",
