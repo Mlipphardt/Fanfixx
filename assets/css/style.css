@@ -136,6 +136,13 @@ footer {
 .query-box 
     margin-top: -44px;
 
+.card-body{
+    color: green;
+}
+
+.query-box {
+    float: left;
+    margin-top: -40px;
 }
 
 #page-head {
