@@ -129,6 +129,10 @@ footer {
     border: 1px solid #515252;
 }
 
+.card-body{
+    color: green;
+}
+
 .query-box {
     float: left;
     margin-top: -40px;

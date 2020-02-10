@@ -229,34 +229,58 @@ function sportsInfo() {
         "method": "GET",
       }).done(function (teamresponse) {
         console.log(teamresponse)
-        $("#NextGames").append("<p>Next games...</p>");
-        for (let i = 0; i < teamresponse.events.length; i++) {
-          let nextGame = $("<p>");
-          let gameDetails = $("<p>");
+        $("#NextGames").append("<h5>Next games...</h5>");
+        for (let i = 0; i < 3; i++) {
+          let nextGame = $("<div class = 'card'>");
+          let gameDetails = $("<div class = 'card-body'>");
           let thisEvent = teamresponse.events[i];
-          $(nextGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
-          $(gameDetails).text("Playing: " + thisEvent.strEvent);
+          let playing = $("<h5 class = 'card-title'> Playing: " + thisEvent.strEvent + "</h5>")
+          let date = $("<p class = 'card-text'> Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal + "</p>");
+          $(gameDetails).append(playing, date);
+          $(nextGame).append(gameDetails);
+          // $(nextGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
+          // $(gameDetails).text("Playing: " + thisEvent.strEvent);
           $("#NextGames").append(nextGame);
-          $("#NextGames").append(gameDetails);
+          // $("#NextGames").append(gameDetails);
+
+          //Card reference
+          // <div class="card" style="width: 18rem;">
+          //   <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+          //   <div class="card-body">
+          //     <h5 class="card-title">Card title</h5>
+          //     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          //     <a href="#" class="btn btn-primary">Go somewhere</a>
+          //   </div>
+          // </div>
         }
       });
       $.ajax({
         "url": "https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=" + playerData.idTeam,
         "method": "GET",
       }).done(function (pasteventresponse) {
-        $("#LastGames").append("<p>Last games...</p>");
-        for (let i = 0; i < pasteventresponse.results.length; i++) {
-          let lastGame = $("<p>");
-          let gameDetails = $("<p>");
-          let gameScore = $("<p>");
+        $("#LastGames").append("<h5>Last games...</h5>");
+        for (let i = 0; i < 3; i++) {
+          let nextGame = $("<div class = 'card'>");
+          let gameDetails = $("<div class = 'card-body'>");
           let thisEvent = pasteventresponse.results[i];
-          console.log(thisEvent);
-          $(lastGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
-          $(gameDetails).text("Playing: " + thisEvent.strEvent);
-          $(gameScore).text("Final Score: " + thisEvent.intHomeScore + " to " + thisEvent.intAwayScore);
-          $("#LastGames").append(lastGame);
-          $("#LastGames").append(gameDetails);
-          $("#LastGames").append(gameScore);
+          let playing = $("<h5 class = 'card-title'> Playing: " + thisEvent.strEvent + "</p>")
+          let date = $("<p class = 'card-text'> Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal + "</p>");
+          let GameScore = $("<p class = 'card-text'> Final Score: " + thisEvent.intHomeScore + " to " + thisEvent.intAwayScore + "</p>");
+          $(gameDetails).append(playing, date, GameScore);
+          $(nextGame).append(gameDetails);
+          $("#LastGames").append(nextGame);
+          
+          // let lastGame = $("<p>");
+          // let gameDetails = $("<p>");
+          // let gameScore = $("<p>");
+          // let thisEvent = pasteventresponse.results[i];
+          // console.log(thisEvent);
+          // $(lastGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
+          // $(gameDetails).text("Playing: " + thisEvent.strEvent);
+          // $(gameScore).text("Final Score: " + thisEvent.intHomeScore + " to " + thisEvent.intAwayScore);
+          // $("#LastGames").append(lastGame);
+          // $("#LastGames").append(gameDetails);
+          // $("#LastGames").append(gameScore);
         }
       });
     };
