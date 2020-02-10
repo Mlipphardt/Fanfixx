@@ -1,6 +1,11 @@
+html{
+    height: 100%;
+}
+
 body {
     background-image: url(../images/dark-honeycomb.png);
     font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
 }
 
 .banner-image {
@@ -163,10 +168,14 @@ footer {
 
 #insta {
     background-color: #771c0c;
+    height: 800px;
+    overflow: auto;
 }
 
 #stats {
     background-color: #2f3b1e;
+    height: 800px;
+    overflow: auto;
 }
 
 #insta-box {
