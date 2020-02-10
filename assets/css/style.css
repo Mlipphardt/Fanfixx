@@ -5,25 +5,19 @@ body {
     letter-spacing: 1px;
 }
 
-#banner{
-    height:149px;
+#banner {
+    height: 149px;
 }
 
 .banner-image {
     margin: -53px 0px 0px -250px;
     width: 600px;
     height: 130px;
-
-}
-
-a {
-    ;
 }
 
 a:hover {
     text-decoration: none!important;
 }
-
 
 #sportsQuery-submit {
     height: 25px;
@@ -133,10 +127,11 @@ footer {
     text-align: left;
 }
 
-.query-box 
+.query-box {
     margin-top: -44px;
+}
 
-.card-body{
+.card-body {
     color: green;
 }
 
@@ -164,6 +159,7 @@ footer {
 }
 
 .container {
+    width: 100%;
     margin-bottom: 100px;
     text-align: center;
 }
@@ -232,12 +228,12 @@ footer {
     margin-right: 15px;
 }
 
-@media screen and (max-width: 1030px) {
+@media screen and (max-width: 1070px) {
     .avatar-img {
         height: 140px;
         width: 140px;
     }
-    .sports-btn{
+    .sports-btn {
         height: 140px;
         width: 140px;
     }
@@ -285,19 +281,22 @@ footer {
     }
 }
 
-@media screen and (max-width: 770px) {
-    .avatar-img {
-        height: 120px;
-        width: 120px;
+@media screen and (max-width: 993px) {
+    .container {
+        width: 100%;
     }
-    .sports-btn{
-        height: 120px;
-        width: 120px;
+    .avatar-img {
+        height: 130px;
+        width: 130px;
+    }
+    .sports-btn {
+        height: 130px;
+        width: 130px;
     }
     .label {
         font-size: 12px;
         padding: 0px;
-        width: 120px;
+        width: 130px;
         margin-top: -18px;
     }
     .banner-image {
@@ -338,18 +337,76 @@ footer {
     }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 775px) {
+    .row {
+        width: 100%;
+        margin-left: -55px;
+    }
+    .label {
+        font-size: 12px;
+        padding: 0px;
+        margin-top: -18px;
+    }
+    .banner-image {
+        margin: -37px 0px 0px -104px;
+        width: 450px;
+        height: 120px;
+    }
+    #sportsQuery-submit {
+        height: 15px;
+        width: 56px;
+        font-size: 8px;
+        margin-top: -26px;
+        margin-left: -20px;
+    }
+    #sportsQuery-text {
+        font-size: 10px;
+        height: 20px;
+        width: 113px;
+        padding-left: 1px;
+        margin-top: 35px;
+        margin-left: -20px;
+    }
+    #instaQuery-text {
+        font-size: 10px;
+        height: 20px;
+        width: 113px;
+        padding-left: 1px;
+        margin-top: 2px;
+        margin-left: -20px;
+    }
+    footer {
+        padding: 5px;
+        clear: both;
+        padding-top: 0px;
+        height: 50px;
+    }
+    .fa-2x {
+        font-size: 15px;
+    }
+    .links {
+        margin-bottom: 0px;
+    }
+    .jumbotron {
+        height: 60px;
+        box-shadow: 0px 5px 1px #535151
+    }
+    .contact-link {
+        margin: 10px;
+    }
+}
+
+@media screen and (max-width: 714px) {
     .avatar-img {
         height: 100px;
         width: 100px;
     }
-    .sports-btn{
+    .sports-btn {
         height: 100px;
         width: 100px;
     }
-    .row{
-        width: 500px;
-        margin-left: -70px;
+    .row {
+        width: 100%;
     }
     .label {
         font-size: 12px;
@@ -358,9 +415,34 @@ footer {
         margin-top: -18px;
     }
     .banner-image {
+        margin: -55px 0px 0px -65px;
+        width: 400px;
+        height: 108px;
+    }
+    #banner {
+        height: 110px;
+    }
+    .contact-link {
+        margin: 10px;
+    }
+    .query-box {
+        margin-top: -65px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .row {
+        width: 700px;
+    }
+    .label {
+        font-size: 12px;
+        padding: 0px;
+        margin-top: -18px;
+    }
+    .banner-image {
         margin: -37px 0px 0px -104px;
-        width: 200px;
-        height: 69px;
+        width: 350px;
+        height: 80px;
     }
     #sportsQuery-submit {
         height: 10px;
@@ -385,23 +467,86 @@ footer {
         margin-top: 2px;
         margin-left: -8px;
     }
-    footer {
-        padding: 5px;
-        clear: both;
-        padding-top: 0px;
-        height: 50px;
-    }
-    .fa-2x {
-        font-size: 15px;
-    }
     .links {
         margin-bottom: 0px;
     }
-    .jumbotron {
-        height: 60px;
-        box-shadow: 0px 5px 1px #535151
-    }
-    .contact-link{
+    .contact-link {
         margin: 10px;
+    }
+}
+
+@media screen and (max-width: 572px) {
+    .avatar-img {
+        height: 100px;
+        width: 100px;
+    }
+    .sports-btn {
+        height: 110px;
+        width: 100px;
+    }
+    .row {
+        width: 600px;
+        margin-left: -25px;
+    }
+    .label {
+        font-size: 12px;
+        padding: 0px;
+        width: 100px;
+        margin-top: -18px;
+    }
+    .banner-image {
+        margin: -22px 0px 0px -84px;
+        width: 350px;
+        height: 100px;
+    }
+    #sportsQuery-submit {
+        height: 10px;
+        width: 51px;
+        font-size: 6px;
+        margin-top: -26px;
+        margin-left: -7px;
+    }
+    #sportsQuery-text {
+        font-size: 8px;
+        height: 12px;
+        width: 91px;
+        padding-left: 2px;
+        margin-top: 65px;
+        margin-left: -8px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .container {
+        width: 370px;
+        margin-left: -50px;
+    }
+    .avatar-img {
+        height: 100px;
+        width: 100px;
+    }
+    .sports-btn {
+        height: 100px;
+        width: 100px;
+    }
+    .row {
+        width: 500px;
+    }
+    .label {
+        font-size: 12px;
+        padding: 0px;
+        width: 100px;
+        margin-top: -18px;
+    }
+    .banner-image {
+        margin: -27px -110px 0px -104px;
+        width: 245px;
+        height: 108px;
+    }
+    #sportsQuery-text {
+        margin-top: 55px;
+    }
+    #banner{
+        width: 375px;
     }
 }
