@@ -4,4 +4,4 @@ What every sports fan craves.
 
 Github Pages link: https://mlipphardt.github.io/Fanfixx/
 
-As an avid sports fan, I would like to have an easy place to visit where I can get great up to date information on my favorite sports teams and players.  This site is designed with every avid sports fan and fantasy sports participant in mind.  Get up to date information about team and player stats as well as the current motivations of your favorite players which they themselves post to social media.  
+Description: This project will be used to take user information and then pull relevant information like stats, twitter, and instagram feeds and update them periodically. 
