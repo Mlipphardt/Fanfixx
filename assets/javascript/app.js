@@ -88,37 +88,37 @@ $('#sportsQuery-text').on('keydown', function (event) {
     let instaItem = $("#instaQuery-text").val().trim();
 
     //pull instagram info from api
-     /*var instaSettings = {
-       "async": true,
-       "crossDomain": true,
-       "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaItem + "&lang=en",
-       "method": "GET",
-       "headers": {
-         "x-rapidapi-host": "instagram9.p.rapidapi.com",
-         "x-rapidapi-key": "24e7ba1147msh84b2d9ba4889f35p191fc7jsn48829d32f784"
-       }
-     }
+    /*var instaSettings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaItem + "&lang=en",
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "instagram9.p.rapidapi.com",
+        "x-rapidapi-key": "24e7ba1147msh84b2d9ba4889f35p191fc7jsn48829d32f784"
+      }
+    }
 
-     $.ajax(instaSettings).done(function (response) {
-       console.log(response);
+    $.ajax(instaSettings).done(function (response) {
+      console.log(response);
 
-       let avatar = response.avatar
+      let avatar = response.avatar
 
-       if (sportsItem === '' || instaItem === '') {
-       }
-       else {
-         // pass to firebase
-         db.ref().push({
-           userQuery: sportsItem,
-           instagram: instaItem,
-           avatar: avatar,
-         });
-       }
+      if (sportsItem === '' || instaItem === '') {
+      }
+      else {
+        // pass to firebase
+        db.ref().push({
+          userQuery: sportsItem,
+          instagram: instaItem,
+          avatar: avatar,
+        });
+      }
 
-       //Resets search text
-       $("#sportsQuery-text").val("");
-       $("#instaQuery-text").val("");
-     })*/
+      //Resets search text
+      $("#sportsQuery-text").val("");
+      $("#instaQuery-text").val("");
+    })*/
   }
 })
 
@@ -131,37 +131,37 @@ $('#instaQuery-text').on('keydown', function (event) {
     let instaItem = $("#instaQuery-text").val().trim();
 
     //pull instagram info from api
-     /*var instaSettings = {
-       "async": true,
-       "crossDomain": true,
-       "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaItem + "&lang=en",
-       "method": "GET",
-       "headers": {
-         "x-rapidapi-host": "instagram9.p.rapidapi.com",
-         "x-rapidapi-key": "24e7ba1147msh84b2d9ba4889f35p191fc7jsn48829d32f784"
-       }
-     }
+    /*var instaSettings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaItem + "&lang=en",
+      "method": "GET",
+      "headers": {
+        "x-rapidapi-host": "instagram9.p.rapidapi.com",
+        "x-rapidapi-key": "24e7ba1147msh84b2d9ba4889f35p191fc7jsn48829d32f784"
+      }
+    }
 
-     $.ajax(instaSettings).done(function (response) {
-       console.log(response);
+    $.ajax(instaSettings).done(function (response) {
+      console.log(response);
 
-       let avatar = response.avatar
+      let avatar = response.avatar
 
-       if (sportsItem === '' || instaItem === '') {
-       }
-       else {
-         // pass to firebase
-         db.ref().push({
-           userQuery: sportsItem,
-           instagram: instaItem,
-           avatar: avatar,
-         });
-       }
+      if (sportsItem === '' || instaItem === '') {
+      }
+      else {
+        // pass to firebase
+        db.ref().push({
+          userQuery: sportsItem,
+          instagram: instaItem,
+          avatar: avatar,
+        });
+      }
 
-       //Resets search text
-       $("#sportsQuery-text").val("");
-       $("#instaQuery-text").val("");
-     })*/
+      //Resets search text
+      $("#sportsQuery-text").val("");
+      $("#instaQuery-text").val("");
+    })*/
   }
 })
 
@@ -185,7 +185,7 @@ db.ref().on('child_added', function (data) {
 
   var sportsBtn = $("<a href=" + queryLink + " class='link'>");
 
-  var image = $('<img src="' + avatar + '" alt="sportsBlock" class="avatar-img">');
+  var image = $('<img src="' + avatar + '" alt="sportsBlock" class="circle avatar-img">');
   var label = $("<div class='label'>" + labelName + "</div>");
   var innerBlock = sportsBtn.append(image).append(label);
 
@@ -213,7 +213,7 @@ db.ref().on('value', function (data) {
 
     var sportsBtn = $("<a href=" + queryLink + " class='link'>");
 
-    var image = $('<img src="' + avatar + '" alt="sportsBlock" class="avatar-img">');
+    var image = $('<img src="' + avatar + '" alt="sportsBlock" class="circle avatar-img">');
     var label = $("<div class='label'>" + query + "</div>");
     var innerBlock = sportsBtn.append(image).append(label);
 
@@ -314,37 +314,37 @@ function instaInfo() {
   resetInstaPage();
 
   //pull instagram info from api
-   /*var instaSettings = {
-     "async": true,
-     "crossDomain": true,
-     "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaItem + "&lang=en",
-     "method": "GET",
-     "headers": {
-       "x-rapidapi-host": "instagram9.p.rapidapi.com",
-       "x-rapidapi-key": "24e7ba1147msh84b2d9ba4889f35p191fc7jsn48829d32f784"
-     }
-   }
+  /*var instaSettings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://instagram9.p.rapidapi.com/api/instagram?kullaniciadi=" + instaItem + "&lang=en",
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "instagram9.p.rapidapi.com",
+      "x-rapidapi-key": "24e7ba1147msh84b2d9ba4889f35p191fc7jsn48829d32f784"
+    }
+  }
 
-   $.ajax(instaSettings).done(function (response) {
-     console.log(response);
-     console.log(response.posts);
+  $.ajax(instaSettings).done(function (response) {
+    console.log(response);
+    console.log(response.posts);
 
-     let responseName = response.fullName;
-     console.log(responseName);
+    let responseName = response.fullName;
+    console.log(responseName);
 
-     for (let i = 0; i < response.posts.length; i++) {
+    for (let i = 0; i < response.posts.length; i++) {
 
-       let post = $("<img alt='post " + [i] + "' src=" + response.posts[i].attachments.link + " class='photo'></img>");
-       if (response.posts[i].text === null) {
-         let caption = $('<p class="photoLabel"></p>');
-         $('#posts').append(post).append(caption);
-       }
-       else {
-         let caption = $('<p class="photoLabel">"' + response.posts[i].text + '"</p>');
-         $('#posts').append(post).append(caption);
-       }
-     }
-   })*/
+      let post = $("<img alt='post " + [i] + "' src=" + response.posts[i].attachments.link + " class='photo'></img>");
+      if (response.posts[i].text === null) {
+        let caption = $('<p class="photoLabel"></p>');
+        $('#posts').append(post).append(caption);
+      }
+      else {
+        let caption = $('<p class="photoLabel">"' + response.posts[i].text + '"</p>');
+        $('#posts').append(post).append(caption);
+      }
+    }
+  })*/
 }
 
 function playerConfirmation() {

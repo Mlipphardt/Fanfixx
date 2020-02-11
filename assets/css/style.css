@@ -17,6 +17,7 @@ body {
 
 a:hover {
     text-decoration: none!important;
+    cursor: pointer;
 }
 
 #sportsQuery-submit {
@@ -25,7 +26,7 @@ a:hover {
     font-size: 14px;
     border-radius: 2px;
     border-color: #2f5bb7;
-    background-color: #357ae8;
+    background-color: #1e4b94;
     justify-content: space-around;
     line-height: .8;
     margin-top: -5px;
@@ -105,12 +106,12 @@ footer {
     position: relative;
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
     color: #f1f1f1;
     font-size: 16px;
     padding: 3px;
     text-align: center;
     width: 180px;
-    margin-top: -30px;
 }
 
 .link:hover {
@@ -131,10 +132,13 @@ footer {
     margin-top: -44px;
 }
 
-.card-body {
-    color: #fbc02d;
-    background-color: rgba(255, 235, 205, 0.6)
+.card {
+    background-color: rgba(124, 122, 119, 0.4);
+    border-radius: 3px;
+}
 
+.card-body{
+    padding-top: 0px;
 }
 
 .query-box {
@@ -172,7 +176,7 @@ footer {
     overflow-y: scroll;
     height: 600px;
     margin-bottom: 40px;
-    color: #eee5d9;
+    color: #d3b15c;
     border-radius: 0 6px 6px 0;
 }
 
@@ -182,7 +186,7 @@ footer {
     overflow-y: scroll;
     height: 600px;
     margin-bottom: 40px;
-    color: #eee5d9;
+    color: #d3b15c;
     border-radius: 6px 0 0 6px;
 }
 
@@ -243,7 +247,6 @@ footer {
         font-size: 13px;
         padding: 3px;
         width: 140px;
-        margin-top: -25px;
     }
     .banner-image {
         margin: -60px 0px 0px -180px;
@@ -299,7 +302,6 @@ footer {
         font-size: 12px;
         padding: 0px;
         width: 130px;
-        margin-top: -18px;
     }
     .banner-image {
         margin: -60px 0px 0px -180px;
@@ -347,7 +349,6 @@ footer {
     .label {
         font-size: 12px;
         padding: 0px;
-        margin-top: -18px;
     }
     .banner-image {
         margin: -37px 0px 0px -104px;
@@ -414,7 +415,6 @@ footer {
         font-size: 12px;
         padding: 0px;
         width: 100px;
-        margin-top: -18px;
     }
     .banner-image {
         margin: -55px 0px 0px -65px;
@@ -439,7 +439,6 @@ footer {
     .label {
         font-size: 12px;
         padding: 0px;
-        margin-top: -18px;
     }
     .banner-image {
         margin: -37px 0px 0px -104px;
@@ -494,7 +493,6 @@ footer {
         font-size: 12px;
         padding: 0px;
         width: 100px;
-        margin-top: -18px;
     }
     .banner-image {
         margin: -22px 0px 0px -84px;
@@ -518,7 +516,7 @@ footer {
     }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 376px) {
     .container {
         width: 370px;
         margin-left: -50px;
