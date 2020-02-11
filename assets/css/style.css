@@ -132,7 +132,8 @@ footer {
 }
 
 .card-body {
-    color: green;
+    color: #fbc02d;
+    background-color: blanchedalmond;
 }
 
 .query-box {
