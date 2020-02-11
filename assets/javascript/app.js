@@ -289,6 +289,8 @@ function sportsInfo() {
         "method": "GET",
       }).done(function (pasteventresponse) {
         $("#LastGames").append("<h5>Last games...</h5>");
+        let leagueID = pasteventresponse.results[0].idLeague;
+        console.log(leagueID);
         for (let i = 0; i < 3; i++) {
           let nextGame = $("<div class = 'card'>");
           let gameDetails = $("<div class = 'card-body'>");
@@ -300,28 +302,30 @@ function sportsInfo() {
           $(nextGame).append(gameDetails);
           $("#LastGames").append(nextGame);
         }
+          $.ajax({
+            "url": "https://www.thesportsdb.com/api/v1/json/4013017/eventsseason.php?id=" + leagueID + "&s=1920",
+            "method": "GET",
+          }).done(function (response) {
+            console.log(leagueID);
+            seasonGames = response.events
+            let gamesWon = 0;
+            let gamesLost = 0;
+            console.log(playerTeam);
+            for (let i = 0; i < seasonGames.length; i++) {
+              if ((seasonGames[i].strHomeTeam == playerTeam) && (seasonGames[i].intHomeScore > seasonGames[i].intAwayScore)){
+                gamesWon++;
+              } if ((seasonGames[i].strAwayTeam == playerTeam) && (seasonGames[i].intAwayScore > seasonGames[i].intHomeScore)){
+                gamesWon++;
+              } else if ((seasonGames[i].strAwayTeam == playerTeam) && (seasonGames[i].intAwayScore < seasonGames[i].intHomeScore)){
+                gamesLost++;
+              } else if ((seasonGames[i].strHomeTeam == playerTeam) && (seasonGames[i].intAwayScore > seasonGames[i].intHomeScore)){
+                gamesLost++;
+              }
+            };
+            $("#WinsandLosses").text("Current Wins/Losses: " + gamesWon + "/" + gamesLost);
+          });
       });
-      $.ajax({
-        "url": "https://www.thesportsdb.com/api/v1/json/4013017/eventsseason.php?id=4387&s=1920",
-        "method": "GET",
-      }).done(function (response) {
-        seasonGames = response.events
-        let gamesWon = 0;
-        let gamesLost = 0;
-        console.log(playerTeam);
-        for (let i = 0; i < seasonGames.length; i++) {
-          if ((seasonGames[i].strHomeTeam == playerTeam) && (seasonGames[i].intHomeScore > seasonGames[i].intAwayScore)){
-            gamesWon++;
-          } if ((seasonGames[i].strAwayTeam == playerTeam) && (seasonGames[i].intAwayScore > seasonGames[i].intHomeScore)){
-            gamesWon++;
-          } else if ((seasonGames[i].strAwayTeam == playerTeam) && (seasonGames[i].intAwayScore < seasonGames[i].intHomeScore)){
-            gamesLost++;
-          } else if ((seasonGames[i].strHomeTeam == playerTeam) && (seasonGames[i].intAwayScore > seasonGames[i].intHomeScore)){
-            gamesLost++;
-          }
-        };
-        $("#WinsandLosses").text("Current Wins/Losses: " + gamesWon + "/" + gamesLost);
-      });
+
     };
 
   });
@@ -405,6 +409,7 @@ function playerConfirmation() {
       "url": "https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=" + playerData.idTeam,
       "method": "GET",
     }).done(function (pasteventresponse) {
+      let leagueID = pasteventresponse.events[0].idLeague
       $("#LastGames").append("<p>Last games...</p>");
       for (let i = 0; i < pasteventresponse.results.length; i++) {
         let lastGame = $("<p>");
@@ -419,30 +424,30 @@ function playerConfirmation() {
         $("#LastGames").append(gameDetails);
         $("#LastGames").append(gameScore);
       }
+        $.ajax({
+          "url": "https://www.thesportsdb.com/api/v1/json/4013017/eventsseason.php?id=" + leagueID + "&s=1920",
+          "method": "GET",
+        }).done(function (response) {
+          console.log(leagueID);
+          seasonGames = response.events
+          let gamesWon = 0;
+          let gamesLost = 0;
+          console.log(playerTeam);
+          for (let i = 0; i < seasonGames.length; i++) {
+            if ((seasonGames[i].strHomeTeam == playerTeam) && (seasonGames[i].intHomeScore > seasonGames[i].intAwayScore)){
+              gamesWon++;
+            } if ((seasonGames[i].strAwayTeam == playerTeam) && (seasonGames[i].intAwayScore > seasonGames[i].intHomeScore)){
+              gamesWon++;
+            } else if ((seasonGames[i].strAwayTeam == playerTeam) && (seasonGames[i].intAwayScore < seasonGames[i].intHomeScore)){
+              gamesLost++;
+            } else if ((seasonGames[i].strHomeTeam == playerTeam) && (seasonGames[i].intAwayScore > seasonGames[i].intHomeScore)){
+              gamesLost++;
+            }
+          };
+          $("#WinsandLosses").text("Current Wins/Losses: " + gamesWon + "/" + gamesLost);
+        });
     });
-    $.ajax({
-      "url": "https://www.thesportsdb.com/api/v1/json/4013017/eventsseason.php?id=4387&s=1920",
-      "method": "GET",
-    }).done(function (response) {
-      console.log(response)
-      seasonGames = response.events
-      let gamesWon = 0;
-      let gamesLost = 0;
-      console.log(playerTeam);
-      for (let i = 0; i < seasonGames.length; i++) {
-        if ((seasonGames[i].strHomeTeam == playerTeam) && (seasonGames[i].intHomeScore > seasonGames[i].intAwayScore)){
-          gamesWon++;
-        } if ((seasonGames[i].strAwayTeam == playerTeam) && (seasonGames[i].intAwayScore > seasonGames[i].intHomeScore)){
-          gamesWon++;
-        } else if ((seasonGames[i].strAwayTeam == playerTeam) && (seasonGames[i].intAwayScore < seasonGames[i].intHomeScore)){
-          gamesLost++;
-        } else if ((seasonGames[i].strHomeTeam == playerTeam) && (seasonGames[i].intAwayScore > seasonGames[i].intHomeScore)){
-          gamesLost++;
-        }
-      };
-      $("#WinsandLosses").text("Current Wins/Losses: " + gamesWon + "/" + gamesLost);
-    });
-    //Ending statement
+   
   });
 };
 
