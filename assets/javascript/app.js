@@ -281,20 +281,7 @@ function sportsInfo() {
           let date = $("<p class = 'card-text'> Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal + "</p>");
           $(gameDetails).append(playing, date);
           $(nextGame).append(gameDetails);
-          // $(nextGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
-          // $(gameDetails).text("Playing: " + thisEvent.strEvent);
           $("#NextGames").append(nextGame);
-          // $("#NextGames").append(gameDetails);
-
-          //Card reference
-          // <div class="card" style="width: 18rem;">
-          //   <img class="card-img-top" src=".../100px180/" alt="Card image cap">
-          //   <div class="card-body">
-          //     <h5 class="card-title">Card title</h5>
-          //     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          //     <a href="#" class="btn btn-primary">Go somewhere</a>
-          //   </div>
-          // </div>
         }
       });
       $.ajax({
@@ -312,18 +299,6 @@ function sportsInfo() {
           $(gameDetails).append(playing, date, GameScore);
           $(nextGame).append(gameDetails);
           $("#LastGames").append(nextGame);
-          
-          // let lastGame = $("<p>");
-          // let gameDetails = $("<p>");
-          // let gameScore = $("<p>");
-          // let thisEvent = pasteventresponse.results[i];
-          // console.log(thisEvent);
-          // $(lastGame).text("Game Date/Time: " + thisEvent.dateEvent + "/" + thisEvent.strTimeLocal);
-          // $(gameDetails).text("Playing: " + thisEvent.strEvent);
-          // $(gameScore).text("Final Score: " + thisEvent.intHomeScore + " to " + thisEvent.intAwayScore);
-          // $("#LastGames").append(lastGame);
-          // $("#LastGames").append(gameDetails);
-          // $("#LastGames").append(gameScore);
         }
       });
     };
