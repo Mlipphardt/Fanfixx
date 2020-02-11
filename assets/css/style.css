@@ -5,7 +5,13 @@ body {
     letter-spacing: 1px;
 }
 
-#banner {
+.banner-image {
+    margin: -60px 0px 0px -180px;
+    width: 650px;
+    height: 120px;
+    background-color: #fff9c4;
+
+ #banner {
     height: 149px;
 }
 
@@ -170,17 +176,18 @@ footer {
     overflow-y: scroll;
     height: 600px;
     margin-bottom: 40px;
-    color: #eee5d9;
+    color: #a7ffeb accent-1
+    ;
     border-radius: 0 6px 6px 0;
 }
 
 #stats {
-    background-color: rgba(57, 58, 55, 0.75);
+    background-color: #84ffff(57, 58, 55, 0.75);
     padding: 15px;
     overflow-y: scroll;
     height: 600px;
     margin-bottom: 40px;
-    color: #eee5d9;
+    color: #d500f9;
     border-radius: 6px 0 0 6px;
 }
 
