@@ -30,6 +30,7 @@ function resetStatsPage() {
   $("#playerStats").text("");
   $("#playerPosition").text("");
   $("#playerBio").text("");
+  $("#WinsandLosses").text("");
   $("#NextGames").empty();
   $("#LastGames").empty();
 };
@@ -246,10 +247,8 @@ function sportsInfo() {
     "url": "https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=" + sportItem,
     "method": "GET",
   }).done(function (response) {
-
     //If multiple players are found, will display to user in popup
     if (response.player.length > 1) {
-      console.log(response.player)
       let didyoumean = $("<p> Did you mean... </p>")
       $("#playerName").append(didyoumean);
       for (let i = 0; i < response.player.length; i++) {
@@ -264,6 +263,7 @@ function sportsInfo() {
     } else {
 
       let playerData = response.player[0];
+      let playerTeam = playerData.strTeam;
       $("#playerTeam").text("Team: " + playerData.strTeam)
       $("#playerPosition").text("Position: " + playerData.strPosition);
       $("#playerBio").text("Bio: " + playerData.strDescriptionEN)
@@ -300,6 +300,27 @@ function sportsInfo() {
           $(nextGame).append(gameDetails);
           $("#LastGames").append(nextGame);
         }
+      });
+      $.ajax({
+        "url": "https://www.thesportsdb.com/api/v1/json/4013017/eventsseason.php?id=4387&s=1920",
+        "method": "GET",
+      }).done(function (response) {
+        seasonGames = response.events
+        let gamesWon = 0;
+        let gamesLost = 0;
+        console.log(playerTeam);
+        for (let i = 0; i < seasonGames.length; i++) {
+          if ((seasonGames[i].strHomeTeam == playerTeam) && (seasonGames[i].intHomeScore > seasonGames[i].intAwayScore)){
+            gamesWon++;
+          } if ((seasonGames[i].strAwayTeam == playerTeam) && (seasonGames[i].intAwayScore > seasonGames[i].intHomeScore)){
+            gamesWon++;
+          } else if ((seasonGames[i].strAwayTeam == playerTeam) && (seasonGames[i].intAwayScore < seasonGames[i].intHomeScore)){
+            gamesLost++;
+          } else if ((seasonGames[i].strHomeTeam == playerTeam) && (seasonGames[i].intAwayScore > seasonGames[i].intHomeScore)){
+            gamesLost++;
+          }
+        };
+        $("#WinsandLosses").text("Current Wins/Losses: " + gamesWon + "/" + gamesLost);
       });
     };
 
@@ -399,6 +420,29 @@ function playerConfirmation() {
         $("#LastGames").append(gameScore);
       }
     });
+    $.ajax({
+      "url": "https://www.thesportsdb.com/api/v1/json/4013017/eventsseason.php?id=4387&s=1920",
+      "method": "GET",
+    }).done(function (response) {
+      console.log(response)
+      seasonGames = response.events
+      let gamesWon = 0;
+      let gamesLost = 0;
+      console.log(playerTeam);
+      for (let i = 0; i < seasonGames.length; i++) {
+        if ((seasonGames[i].strHomeTeam == playerTeam) && (seasonGames[i].intHomeScore > seasonGames[i].intAwayScore)){
+          gamesWon++;
+        } if ((seasonGames[i].strAwayTeam == playerTeam) && (seasonGames[i].intAwayScore > seasonGames[i].intHomeScore)){
+          gamesWon++;
+        } else if ((seasonGames[i].strAwayTeam == playerTeam) && (seasonGames[i].intAwayScore < seasonGames[i].intHomeScore)){
+          gamesLost++;
+        } else if ((seasonGames[i].strHomeTeam == playerTeam) && (seasonGames[i].intAwayScore > seasonGames[i].intHomeScore)){
+          gamesLost++;
+        }
+      };
+      $("#WinsandLosses").text("Current Wins/Losses: " + gamesWon + "/" + gamesLost);
+    });
+    //Ending statement
   });
 };
 
